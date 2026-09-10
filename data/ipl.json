@@ -1,0 +1,24 @@
+{
+  "career":{"matches":265,"innings":262,"runs":6957,"highestScore":"109","average":29.73,"strikeRate":133.35,"hundreds":2,"fifties":46,"fours":629,"sixes":310,"lastUpdated":"2 September 2026","source":"IPL.com"},
+  "seasons":[
+    {"season":2008,"team":"Deccan Chargers","matches":13,"runs":404,"highest":"76*","average":36.72,"strikeRate":147.98,"hundreds":0,"fifties":4,"sixes":19},
+    {"season":2009,"team":"Deccan Chargers","matches":16,"runs":362,"highest":"52","average":27.84,"strikeRate":114.92,"hundreds":0,"fifties":1,"sixes":18},
+    {"season":2010,"team":"Deccan Chargers","matches":16,"runs":404,"highest":"73","average":28.85,"strikeRate":133.77,"hundreds":0,"fifties":3,"sixes":14},
+    {"season":2011,"team":"Mumbai Indians","matches":16,"runs":372,"highest":"87","average":33.81,"strikeRate":125.25,"hundreds":0,"fifties":3,"sixes":13},
+    {"season":2012,"team":"Mumbai Indians","matches":17,"runs":433,"highest":"109*","average":30.92,"strikeRate":126.60,"hundreds":1,"fifties":3,"sixes":18},
+    {"season":2013,"team":"Mumbai Indians","matches":19,"runs":538,"highest":"79*","average":38.42,"strikeRate":131.54,"hundreds":0,"fifties":4,"sixes":28},
+    {"season":2014,"team":"Mumbai Indians","matches":15,"runs":390,"highest":"59*","average":30.00,"strikeRate":129.13,"hundreds":0,"fifties":3,"sixes":16},
+    {"season":2015,"team":"Mumbai Indians","matches":16,"runs":482,"highest":"98*","average":34.42,"strikeRate":144.74,"hundreds":0,"fifties":3,"sixes":21},
+    {"season":2016,"team":"Mumbai Indians","matches":14,"runs":489,"highest":"85*","average":44.45,"strikeRate":132.88,"hundreds":0,"fifties":5,"sixes":16},
+    {"season":2017,"team":"Mumbai Indians","matches":17,"runs":333,"highest":"67","average":23.78,"strikeRate":121.97,"hundreds":0,"fifties":3,"sixes":9},
+    {"season":2018,"team":"Mumbai Indians","matches":14,"runs":286,"highest":"94","average":23.83,"strikeRate":133.02,"hundreds":0,"fifties":2,"sixes":12},
+    {"season":2019,"team":"Mumbai Indians","matches":15,"runs":405,"highest":"67","average":28.92,"strikeRate":128.57,"hundreds":0,"fifties":2,"sixes":10},
+    {"season":2020,"team":"Mumbai Indians","matches":12,"runs":332,"highest":"80","average":27.66,"strikeRate":127.69,"hundreds":0,"fifties":3,"sixes":19},
+    {"season":2021,"team":"Mumbai Indians","matches":13,"runs":381,"highest":"63","average":29.30,"strikeRate":127.42,"hundreds":0,"fifties":1,"sixes":14},
+    {"season":2022,"team":"Mumbai Indians","matches":14,"runs":268,"highest":"48","average":19.14,"strikeRate":120.18,"hundreds":0,"fifties":0,"sixes":13},
+    {"season":2023,"team":"Mumbai Indians","matches":16,"runs":332,"highest":"65","average":20.75,"strikeRate":132.80,"hundreds":0,"fifties":2,"sixes":17},
+    {"season":2024,"team":"Mumbai Indians","matches":14,"runs":417,"highest":"105*","average":32.08,"strikeRate":150.00,"hundreds":1,"fifties":1,"sixes":23},
+    {"season":2025,"team":"Mumbai Indians","matches":15,"runs":418,"highest":"81","average":29.86,"strikeRate":149.29,"hundreds":0,"fifties":4,"sixes":22},
+    {"season":2026,"team":"Mumbai Indians","matches":9,"runs":283,"highest":"84","average":35.38,"strikeRate":157.22,"hundreds":0,"fifties":2,"sixes":21}
+  ]
+}

@@ -1,0 +1,57 @@
+[
+  {
+    "id": "odi-264",
+    "category": "Batting",
+    "format": "ODI",
+    "title": "Highest individual ODI score",
+    "value": "264",
+    "year": 2014,
+    "opponent": "Sri Lanka",
+    "venue": "Eden Gardens, Kolkata",
+    "description": "Rohit Sharma's 264 remains the highest individual score in men's ODI cricket."
+  },
+  {
+    "id": "odi-3-double",
+    "category": "Batting",
+    "format": "ODI",
+    "title": "Three ODI double centuries",
+    "value": "3",
+    "year": 2017,
+    "opponent": "Australia & Sri Lanka",
+    "venue": "India",
+    "description": "The only batter to score three ODI double centuries."
+  },
+  {
+    "id": "wc19-five",
+    "category": "World Cup",
+    "format": "ODI",
+    "title": "Most centuries in a single World Cup",
+    "value": "5",
+    "year": 2019,
+    "opponent": "Multiple",
+    "venue": "England & Wales",
+    "description": "Five centuries in the 2019 Cricket World Cup, a tournament record at the time."
+  },
+  {
+    "id": "t20i-5",
+    "category": "International",
+    "format": "T20I",
+    "title": "T20I centuries",
+    "value": "5",
+    "year": 2024,
+    "opponent": "Multiple",
+    "venue": "International",
+    "description": "Finished his T20I career with five centuries."
+  },
+  {
+    "id": "ipl-five-titles",
+    "category": "IPL",
+    "format": "IPL",
+    "title": "IPL titles as captain",
+    "value": "5",
+    "year": 2020,
+    "opponent": "Mumbai Indians",
+    "venue": "IPL",
+    "description": "Led Mumbai Indians to five IPL titles: 2013, 2015, 2017, 2019 and 2020."
+  }
+]

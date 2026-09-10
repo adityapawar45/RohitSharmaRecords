@@ -1,0 +1,19 @@
+{
+  "name": "Rohit Sharma",
+  "fullName": "Rohit Gurunath Sharma",
+  "nickname": "The Hitman",
+  "role": "Batter",
+  "battingStyle": "Right-handed",
+  "bowlingStyle": "Right-arm off-spin",
+  "dateOfBirth": "30 April 1987",
+  "birthplace": "Nagpur, Maharashtra, India",
+  "internationalDebut": "2007",
+  "jerseyNumber": "45",
+  "teams": ["India", "Mumbai", "Deccan Chargers", "Mumbai Indians"],
+  "status": "Active in ODIs; retired from Tests (May 2025) and T20Is (June 2024)",
+  "lastUpdated": "2 September 2026",
+  "sources": [
+    {"label":"BCCI player profile", "url":"https://www.bcci.tv/players/6/rohit-sharma?platform=international&type=men"},
+    {"label":"IPL.com player profile", "url":"https://www.ipl.com/player/rohit-sharma"}
+  ]
+}

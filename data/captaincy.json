@@ -1,0 +1,51 @@
+{
+  "international": {
+    "matches": 142,
+    "wins": 103,
+    "losses": 33,
+    "ties": 2,
+    "draws": 3,
+    "noResults": 1,
+    "winRate": 74.82,
+    "source": "InsideSport, July 2026 snapshot"
+  },
+  "test": {
+    "matches": 24,
+    "wins": 12,
+    "losses": 9,
+    "ties": 0,
+    "draws": 3,
+    "noResults": 0,
+    "winRate": 56.25
+  },
+  "odi": {
+    "matches": 56,
+    "wins": 42,
+    "losses": 12,
+    "ties": 1,
+    "draws": 0,
+    "noResults": 1,
+    "winRate": 77.27
+  },
+  "t20i": {
+    "matches": 62,
+    "wins": 49,
+    "losses": 12,
+    "ties": 1,
+    "draws": 0,
+    "noResults": 0,
+    "winRate": 79.84
+  },
+  "ipl": {
+    "matches": 158,
+    "wins": 87,
+    "losses": 67,
+    "ties": 4,
+    "draws": 0,
+    "noResults": 0,
+    "winRate": 56.33,
+    "titles": 5,
+    "source": "IPL captaincy record"
+  },
+  "lastUpdated": "2 September 2026"
+}
