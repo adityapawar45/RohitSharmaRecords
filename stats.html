@@ -232,6 +232,22 @@
         border-radius: 50%;
         margin-right: 0.4rem;
       }
+
+      /* Visible focus ring for the format tabs */
+      .dashboard-tabs button:focus-visible {
+        outline: 2px solid var(--rs-accent);
+        outline-offset: 3px;
+        border-radius: 0.5rem;
+      }
+
+      /* Respect reduced-motion preferences */
+      @media (prefers-reduced-motion: reduce) {
+        .stat-card,
+        .stat-card:hover {
+          transition: none;
+          transform: none;
+        }
+      }
     </style>
 
     <script type="application/ld+json">
@@ -292,7 +308,9 @@
     </nav>
 
     <main>
-      <!-- ============================= HERO / KPI RIBBON ============================= -->
+      <!-- ============================= HERO / KPI RIBBON =============================
+           Values below are the no-JS fallbacks; the stats engine overwrites them
+           from DATA on load so there is only ever one source of truth. -->
       <section class="section" style="padding-top: 150px">
         <div class="container">
           <div class="section-label">Statistics hub</div>
@@ -306,37 +324,37 @@
           <div class="row g-3 mb-4">
             <div class="col-6 col-lg-2">
               <div class="glass kpi-card">
-                <div class="kpi-value">511</div>
+                <div class="kpi-value" data-kpi="intlMatches">511</div>
                 <div class="kpi-label">Internationals</div>
               </div>
             </div>
             <div class="col-6 col-lg-2">
               <div class="glass kpi-card">
-                <div class="kpi-value">20,252</div>
+                <div class="kpi-value" data-kpi="intlRuns">20,252</div>
                 <div class="kpi-label">International runs</div>
               </div>
             </div>
             <div class="col-6 col-lg-2">
               <div class="glass kpi-card">
-                <div class="kpi-value">50</div>
+                <div class="kpi-value" data-kpi="intlHundreds">50</div>
                 <div class="kpi-label">International 100s</div>
               </div>
             </div>
             <div class="col-6 col-lg-2">
               <div class="glass kpi-card">
-                <div class="kpi-value">264</div>
+                <div class="kpi-value" data-kpi="highestScore">264</div>
                 <div class="kpi-label">Highest ODI score</div>
               </div>
             </div>
             <div class="col-6 col-lg-2">
               <div class="glass kpi-card">
-                <div class="kpi-value">5</div>
+                <div class="kpi-value" data-kpi="iplTitles">5</div>
                 <div class="kpi-label">IPL titles (captain)</div>
               </div>
             </div>
             <div class="col-6 col-lg-2">
               <div class="glass kpi-card">
-                <div class="kpi-value">5</div>
+                <div class="kpi-value" data-kpi="iccTrophies">5</div>
                 <div class="kpi-label">ICC trophies won</div>
               </div>
             </div>
@@ -353,18 +371,76 @@
               role="tablist"
               aria-label="Select a format"
             >
-              <button class="active" role="tab" aria-selected="true" data-format="all">
+              <button
+                id="tab-all"
+                class="active"
+                role="tab"
+                aria-selected="true"
+                aria-controls="statsGrid"
+                tabindex="0"
+                data-format="all"
+              >
                 ALL FORMATS
               </button>
-              <button role="tab" aria-selected="false" data-format="test">TEST</button>
-              <button role="tab" aria-selected="false" data-format="odi">ODI</button>
-              <button role="tab" aria-selected="false" data-format="t20i">T20I</button>
-              <button role="tab" aria-selected="false" data-format="ipl">IPL</button>
+              <button
+                id="tab-test"
+                role="tab"
+                aria-selected="false"
+                aria-controls="statsGrid"
+                tabindex="-1"
+                data-format="test"
+              >
+                TEST
+              </button>
+              <button
+                id="tab-odi"
+                role="tab"
+                aria-selected="false"
+                aria-controls="statsGrid"
+                tabindex="-1"
+                data-format="odi"
+              >
+                ODI
+              </button>
+              <button
+                id="tab-t20i"
+                role="tab"
+                aria-selected="false"
+                aria-controls="statsGrid"
+                tabindex="-1"
+                data-format="t20i"
+              >
+                T20I
+              </button>
+              <button
+                id="tab-ipl"
+                role="tab"
+                aria-selected="false"
+                aria-controls="statsGrid"
+                tabindex="-1"
+                data-format="ipl"
+              >
+                IPL
+              </button>
             </div>
 
-            <div id="statsGrid" class="row g-3" aria-live="polite"></div>
+            <div
+              id="statsGrid"
+              class="row g-3"
+              role="tabpanel"
+              aria-labelledby="tab-all"
+              aria-live="polite"
+            ></div>
 
             <p class="mini-note mt-3 mb-0" id="gridCaption"></p>
+
+            <noscript>
+              <p class="mini-note mt-3 mb-0">
+                JavaScript is switched off, so the interactive cards and charts
+                are unavailable. The full career table below still lists every
+                statistic.
+              </p>
+            </noscript>
           </div>
         </div>
       </section>
@@ -380,7 +456,11 @@
               <div class="glass p-3 p-lg-4 h-100">
                 <h3 class="h5 mb-3">Runs by format</h3>
                 <div class="chart-box">
-                  <canvas id="formatChart" aria-label="Runs by format chart" role="img"></canvas>
+                  <canvas
+                    id="formatChart"
+                    aria-label="Bar chart of Rohit Sharma's runs by format"
+                    role="img"
+                  ></canvas>
                 </div>
               </div>
             </div>
@@ -388,11 +468,13 @@
               <div class="glass p-3 p-lg-4 h-100">
                 <h3 class="h5 mb-3">Centuries split</h3>
                 <div class="chart-box-sm">
-                  <canvas id="centuryChart" aria-label="Centuries by format chart" role="img"></canvas>
+                  <canvas
+                    id="centuryChart"
+                    aria-label="Doughnut chart of Rohit Sharma's centuries by format"
+                    role="img"
+                  ></canvas>
                 </div>
-                <div class="mini-note mt-3">
-                  50 international hundreds · 2 IPL hundreds
-                </div>
+                <div class="mini-note mt-3" id="centuryNote"></div>
               </div>
             </div>
           </div>
@@ -402,23 +484,28 @@
               <div class="glass p-3 p-lg-4 h-100">
                 <h3 class="h5 mb-3">Fifties by format</h3>
                 <div class="chart-box-sm">
-                  <canvas id="fiftyChart" aria-label="Fifties by format chart" role="img"></canvas>
+                  <canvas
+                    id="fiftyChart"
+                    aria-label="Bar chart of Rohit Sharma's fifties by format"
+                    role="img"
+                  ></canvas>
                 </div>
               </div>
             </div>
             <div class="col-lg-5">
               <div class="glass p-4 h-100">
                 <div class="section-label">Data discipline</div>
-                <h3 class="h3 mt-2">No hidden hard-coding.</h3>
+                <h3 class="h3 mt-2">One object drives everything.</h3>
                 <p class="text-muted mb-3">
-                  The dashboard reads from a single <code>DATA</code> object. Swap
-                  it for an API response and every card, tab and chart updates
-                  automatically — no markup changes required.
+                  Every card, table row and chart on this page is rendered from a
+                  single <code>DATA</code> object. Swap it for an API response and
+                  the whole page follows — no markup changes required.
                 </p>
                 <ul class="text-muted small mb-0 ps-3">
                   <li>Aggregates are computed from the per-format records.</li>
-                  <li>Averages are rounded to two decimal places.</li>
+                  <li>Averages and strike rates are rounded to two decimals.</li>
                   <li>“All formats” covers Test, ODI and T20I only.</li>
+                  <li>Charts re-colour themselves when the theme changes.</li>
                 </ul>
                 <div class="mini-note mt-3">
                   Last updated: <span data-last-updated>11 September 2026</span>
@@ -429,7 +516,9 @@
         </div>
       </section>
 
-      <!-- ============================= FULL CAREER TABLE ============================= -->
+      <!-- ============================= FULL CAREER TABLE =============================
+           The static rows are a no-JS / crawler fallback; the stats engine
+           re-renders <tbody> and <tfoot> from DATA on load. -->
       <section class="section pt-0">
         <div class="container">
           <div class="section-label">Full career record</div>
@@ -455,7 +544,7 @@
                     <th scope="col">HS</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="careerTableBody">
                   <tr>
                     <th scope="row">Test</th>
                     <td>67</td>
@@ -501,7 +590,7 @@
                     <td>109*</td>
                   </tr>
                 </tbody>
-                <tfoot>
+                <tfoot id="careerTableFoot">
                   <tr>
                     <th scope="row">Internationals</th>
                     <td>511</td>
@@ -517,26 +606,7 @@
               </table>
             </div>
 
-            <div class="row g-3 mt-4">
-              <div class="col-md-4">
-                <div class="mini-note">
-                  <span class="legend-dot" style="background: #dc2626"></span>Test
-                  · 12 hundreds, HS 212
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="mini-note">
-                  <span class="legend-dot" style="background: #2563eb"></span>ODI ·
-                  33 hundreds, HS 264
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="mini-note">
-                  <span class="legend-dot" style="background: #16a34a"></span>T20I ·
-                  5 hundreds, HS 121*
-                </div>
-              </div>
-            </div>
+            <div class="row g-3 mt-4" id="tableLegend"></div>
 
             <p class="source-note mt-4 mb-0">
               Asterisk (*) denotes an unbeaten innings. “Internationals” row
@@ -633,7 +703,7 @@
                   </div>
                   <div class="timeline-item">
                     <div class="timeline-year">2013</div>
-                    <div class="timeline-title">Test debut & first ODI double</div>
+                    <div class="timeline-title">Test debut &amp; first ODI double</div>
                     <p class="timeline-copy">
                       177 on Test debut against the West Indies in Kolkata, then
                       209 against Australia in Bengaluru — his first ODI double
@@ -674,7 +744,7 @@
                   </div>
                   <div class="timeline-item">
                     <div class="timeline-year">2025</div>
-                    <div class="timeline-title">Champions Trophy & Test farewell</div>
+                    <div class="timeline-title">Champions Trophy &amp; Test farewell</div>
                     <p class="timeline-copy">
                       Led India to the ICC Champions Trophy title and retired
                       from Test cricket.
@@ -902,109 +972,191 @@
 
         /* ------------------------------------------------------------------
          * SINGLE SOURCE OF TRUTH
-         * Replace this object with an API response and the UI follows.
+         * Everything on this page is derived from this object.
+         * Replace it with an API response and the UI follows.
          * ------------------------------------------------------------------ */
         const DATA = {
           meta: {
             lastUpdated: "11 September 2026",
-            formats: ["test", "odi", "t20i", "ipl"]
+            iccTrophies: 5,
+            formatKeys: ["test", "odi", "t20i", "ipl"],
+            internationalKeys: ["test", "odi", "t20i"]
+          },
+
+          all: {
+            label: "All internationals",
+            note:
+              "Test + ODI + T20I only. Franchise (IPL) numbers are excluded from this aggregate."
           },
 
           formats: {
-            all: {
-              label: "All internationals",
-              note:
-                "Test + ODI + T20I only. Franchise (IPL) numbers are excluded from this aggregate.",
-              stats: [
-                { k: "Matches", v: "511" },
-                { k: "Innings", v: "542" },
-                { k: "Not outs", v: "64" },
-                { k: "Runs", v: "20,252" },
-                { k: "Average", v: "42.37" },
-                { k: "Centuries", v: "50" },
-                { k: "Fifties", v: "112" },
-                { k: "Highest score", v: "264" },
-                { k: "Ducks", v: "—" },
-                { k: "Sixes", v: "—" }
-              ]
-            },
-
             test: {
               label: "Test cricket",
+              short: "Test",
+              color: "#dc2626",
               note:
                 "Test career — debut November 2013 vs West Indies, Kolkata (177 on debut).",
-              stats: [
-                { k: "Matches", v: "67" },
-                { k: "Innings", v: "116" },
-                { k: "Runs", v: "4,301" },
-                { k: "Average", v: "40.57" },
-                { k: "Strike rate", v: "57.05" },
-                { k: "Centuries", v: "12" },
-                { k: "Fifties", v: "18" },
-                { k: "Highest score", v: "212" },
-                { k: "Centuries + fifties", v: "30" },
-                { k: "Runs per innings", v: "37.08" }
-              ]
+              matches: 67,
+              innings: 116,
+              notOuts: 10,
+              runs: 4301,
+              average: 40.57,
+              strikeRate: 57.05,
+              hundreds: 12,
+              fifties: 18,
+              highest: "212"
             },
 
             odi: {
               label: "One Day International",
+              short: "ODI",
+              color: "#2563eb",
               note:
                 "ODI career — debut June 2007 vs Ireland. Holds the world record for the highest individual score.",
-              stats: [
-                { k: "Matches", v: "285" },
-                { k: "Innings", v: "275" },
-                { k: "Runs", v: "11,720" },
-                { k: "Average", v: "48.83" },
-                { k: "Strike rate", v: "92.97" },
-                { k: "Centuries", v: "33" },
-                { k: "Fifties", v: "62" },
-                { k: "Highest score", v: "264" },
-                { k: "Centuries + fifties", v: "95" },
-                { k: "Runs per innings", v: "42.62" }
-              ]
+              matches: 285,
+              innings: 275,
+              notOuts: 35,
+              runs: 11720,
+              average: 48.83,
+              strikeRate: 92.97,
+              hundreds: 33,
+              fifties: 62,
+              highest: "264"
             },
 
             t20i: {
               label: "T20 International",
+              short: "T20I",
+              color: "#16a34a",
               note:
                 "T20I career — retired as the format's leading run-scorer and six-hitter.",
-              stats: [
-                { k: "Matches", v: "159" },
-                { k: "Innings", v: "151" },
-                { k: "Runs", v: "4,231" },
-                { k: "Average", v: "32.05" },
-                { k: "Strike rate", v: "140.89" },
-                { k: "Centuries", v: "5" },
-                { k: "Fifties", v: "32" },
-                { k: "Highest score", v: "121*" },
-                { k: "Centuries + fifties", v: "37" },
-                { k: "Sixes", v: "205" }
-              ]
+              matches: 159,
+              innings: 151,
+              notOuts: 19,
+              runs: 4231,
+              average: 32.05,
+              strikeRate: 140.89,
+              hundreds: 5,
+              fifties: 32,
+              highest: "121*",
+              sixes: 205
             },
 
             ipl: {
               label: "Indian Premier League",
+              short: "IPL",
+              color: "#f59e0b",
               note:
                 "IPL career — Mumbai Indians captain for five title-winning campaigns.",
-              stats: [
-                { k: "Matches", v: "278" },
-                { k: "Runs", v: "7,289" },
-                { k: "Average", v: "30.12" },
-                { k: "Strike rate", v: "133.23" },
-                { k: "Centuries", v: "2" },
-                { k: "Fifties", v: "49" },
-                { k: "Highest score", v: "109*" },
-                { k: "Fours", v: "661" },
-                { k: "Sixes", v: "319" },
-                { k: "Titles as captain", v: "5" }
-              ]
+              matches: 278,
+              innings: null,
+              notOuts: null,
+              runs: 7289,
+              average: 30.12,
+              strikeRate: 133.23,
+              hundreds: 2,
+              fifties: 49,
+              highest: "109*",
+              fours: 661,
+              sixes: 319,
+              titles: 5
             }
           }
         };
 
         /* ------------------------------------------------------------------
-         * 1. INTERACTIVE STAT GRID
+         * FORMATTING HELPERS
+         * ------------------------------------------------------------------ */
+        const NUMBER = new Intl.NumberFormat("en-IN");
+        const DASH = "—";
+
+        function num(value) {
+          return value === null || value === undefined ? DASH : NUMBER.format(value);
+        }
+
+        function dec(value) {
+          if (value === null || value === undefined || !isFinite(value)) return DASH;
+          return (Math.round(value * 100) / 100).toFixed(2);
+        }
+
+        function highestValue(format) {
+          const parsed = parseInt(String(format.highest).replace(/\D/g, ""), 10);
+          return isNaN(parsed) ? 0 : parsed;
+        }
+
+        /* ------------------------------------------------------------------
+         * AGGREGATE (Test + ODI + T20I) — computed, never hard-coded
+         * ------------------------------------------------------------------ */
+        function aggregate() {
+          const totals = {
+            matches: 0,
+            innings: 0,
+            notOuts: 0,
+            runs: 0,
+            hundreds: 0,
+            fifties: 0,
+            highest: DASH,
+            highestValue: -1
+          };
+
+          DATA.meta.internationalKeys.forEach(function (key) {
+            const f = DATA.formats[key];
+            if (!f) return;
+
+            totals.matches += f.matches || 0;
+            totals.innings += f.innings || 0;
+            totals.notOuts += f.notOuts || 0;
+            totals.runs += f.runs || 0;
+            totals.hundreds += f.hundreds || 0;
+            totals.fifties += f.fifties || 0;
+
+            const hv = highestValue(f);
+            if (hv > totals.highestValue) {
+              totals.highestValue = hv;
+              totals.highest = f.highest;
+            }
+          });
+
+          const outs = totals.innings - totals.notOuts;
+          totals.average = outs > 0 ? totals.runs / outs : null;
+
+          return totals;
+        }
+
+        const INTERNATIONAL_TOTALS = aggregate();
+
+        /* ------------------------------------------------------------------
+         * STAT LISTS
+         * ------------------------------------------------------------------ */
+        function statsFor(key) {
+          const f = key === "all" ? INTERNATIONAL_TOTALS : DATA.formats[key];
+          if (!f) return [];
+
+          const out = [];
+          const push = function (label, value) {
+            out.push({ k: label, v: value });
+          };
+
+          push("Matches", num(f.matches));
+          if (f.innings) push("Innings", num(f.innings));
+          if (key === "all") push("Not outs", num(f.notOuts));
+          push("Runs", num(f.runs));
+          push("Average", dec(f.average));
+          if (f.strikeRate !== undefined) push("Strike rate", dec(f.strikeRate));
+          push("Highest score", f.highest);
+          push("Centuries", num(f.hundreds));
+          push("Fifties", num(f.fifties));
+          push("Centuries + fifties", num(f.hundreds + f.fifties));
+          if (f.innings) push("Runs per innings", dec(f.runs / f.innings));
+          if (f.fours !== undefined) push("Fours", num(f.fours));
+          if (f.sixes !== undefined) push("Sixes", num(f.sixes));
+          if (f.titles !== undefined) push("Titles as captain", num(f.titles));
+
+          return out;
+        }
+
+        /* ------------------------------------------------------------------
+         * 1. INTERACTIVE STAT GRID + TABS
          * ------------------------------------------------------------------ */
         const grid = document.getElementById("statsGrid");
         const caption = document.getElementById("gridCaption");
@@ -1013,10 +1165,10 @@
         );
 
         function renderFormat(key) {
-          const format = DATA.formats[key];
+          const format = key === "all" ? DATA.all : DATA.formats[key];
           if (!grid || !format) return;
 
-          grid.innerHTML = format.stats
+          grid.innerHTML = statsFor(key)
             .map(function (stat) {
               return (
                 '<div class="col-6 col-md-4 col-xl-3">' +
@@ -1036,221 +1188,463 @@
           if (caption) caption.textContent = format.note || "";
         }
 
-        tabs.forEach(function (btn) {
-          btn.addEventListener("click", function () {
-            tabs.forEach(function (other) {
-              other.classList.remove("active");
-              other.setAttribute("aria-selected", "false");
-            });
-            btn.classList.add("active");
-            btn.setAttribute("aria-selected", "true");
-            renderFormat(btn.dataset.format);
+        function selectTab(button) {
+          tabs.forEach(function (tab) {
+            const active = tab === button;
+            tab.classList.toggle("active", active);
+            tab.setAttribute("aria-selected", active ? "true" : "false");
+            tab.tabIndex = active ? 0 : -1;
+          });
+
+          if (grid) grid.setAttribute("aria-labelledby", button.id);
+          renderFormat(button.dataset.format);
+        }
+
+        tabs.forEach(function (button, index) {
+          button.addEventListener("click", function () {
+            selectTab(button);
+          });
+
+          // Roving-focus keyboard support for the tablist.
+          button.addEventListener("keydown", function (event) {
+            let target = null;
+
+            if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+              target = tabs[(index + 1) % tabs.length];
+            } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+              target = tabs[(index - 1 + tabs.length) % tabs.length];
+            } else if (event.key === "Home") {
+              target = tabs[0];
+            } else if (event.key === "End") {
+              target = tabs[tabs.length - 1];
+            }
+
+            if (target) {
+              event.preventDefault();
+              target.focus();
+              selectTab(target);
+            }
           });
         });
 
         renderFormat("all");
 
         /* ------------------------------------------------------------------
-         * 2. CHARTS
+         * 2. FULL CAREER TABLE (rendered from DATA)
          * ------------------------------------------------------------------ */
-        const COLORS = {
-          test: "#dc2626",
-          odi: "#2563eb",
-          t20i: "#16a34a",
-          ipl: "#f59e0b"
-        };
+        function renderTable() {
+          const tbody = document.getElementById("careerTableBody");
+          const tfoot = document.getElementById("careerTableFoot");
+          if (!tbody || !tfoot) return;
 
-        const GRID_COLOR = "rgba(148, 163, 184, 0.18)";
-        const TICK_COLOR = "#8b93a7";
-        const FONT = {
-          family:
-            "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
-          size: 12
-        };
+          tbody.innerHTML = DATA.meta.formatKeys
+            .map(function (key) {
+              const f = DATA.formats[key];
+              return (
+                "<tr>" +
+                '<th scope="row">' + f.short + "</th>" +
+                "<td>" + num(f.matches) + "</td>" +
+                "<td>" + (f.innings ? num(f.innings) : DASH) + "</td>" +
+                "<td>" + num(f.runs) + "</td>" +
+                "<td>" + dec(f.average) + "</td>" +
+                "<td>" + dec(f.strikeRate) + "</td>" +
+                "<td>" + num(f.hundreds) + "</td>" +
+                "<td>" + num(f.fifties) + "</td>" +
+                "<td>" + f.highest + "</td>" +
+                "</tr>"
+              );
+            })
+            .join("");
 
-        const tooltipStyle = {
-          backgroundColor: "rgba(15, 23, 42, 0.94)",
-          titleColor: "#f8fafc",
-          bodyColor: "#e2e8f0",
-          padding: 12,
-          cornerRadius: 10,
-          displayColors: false
-        };
+          const a = INTERNATIONAL_TOTALS;
+          tfoot.innerHTML =
+            "<tr>" +
+            '<th scope="row">Internationals</th>' +
+            "<td>" + num(a.matches) + "</td>" +
+            "<td>" + num(a.innings) + "</td>" +
+            "<td>" + num(a.runs) + "</td>" +
+            "<td>" + dec(a.average) + "</td>" +
+            "<td>" + DASH + "</td>" +
+            "<td>" + num(a.hundreds) + "</td>" +
+            "<td>" + num(a.fifties) + "</td>" +
+            "<td>" + a.highest + "</td>" +
+            "</tr>";
+        }
+
+        function renderTableLegend() {
+          const legend = document.getElementById("tableLegend");
+          if (!legend) return;
+
+          legend.innerHTML = DATA.meta.formatKeys
+            .map(function (key) {
+              const f = DATA.formats[key];
+              return (
+                '<div class="col-6 col-md-3">' +
+                '<div class="mini-note">' +
+                '<span class="legend-dot" style="background:' + f.color + '"></span>' +
+                f.short + " · " + f.hundreds + " hundreds, HS " + f.highest +
+                "</div></div>"
+              );
+            })
+            .join("");
+        }
+
+        /* ------------------------------------------------------------------
+         * 3. KPI RIBBON + NOTES
+         * ------------------------------------------------------------------ */
+        function setKpi(name, value) {
+          const el = document.querySelector('[data-kpi="' + name + '"]');
+          if (el) el.textContent = value;
+        }
+
+        function renderKpis() {
+          const a = INTERNATIONAL_TOTALS;
+          setKpi("intlMatches", num(a.matches));
+          setKpi("intlRuns", num(a.runs));
+          setKpi("intlHundreds", num(a.hundreds));
+          setKpi("highestScore", DATA.formats.odi.highest);
+          setKpi("iplTitles", num(DATA.formats.ipl.titles));
+          setKpi("iccTrophies", num(DATA.meta.iccTrophies));
+
+          const centuryNote = document.getElementById("centuryNote");
+          if (centuryNote) {
+            centuryNote.textContent =
+              num(a.hundreds) + " international hundreds · " +
+              num(DATA.formats.ipl.hundreds) + " IPL hundreds";
+          }
+
+          document.querySelectorAll("[data-last-updated]").forEach(function (el) {
+            el.textContent = DATA.meta.lastUpdated;
+          });
+
+          const year = document.getElementById("year");
+          if (year) year.textContent = String(new Date().getFullYear());
+        }
+
+        /* ------------------------------------------------------------------
+         * 4. CHARTS (lazy, data-driven, theme-aware)
+         * ------------------------------------------------------------------ */
+        const charts = {};
+        let chartsReady = false;
+
+        function isDarkMode() {
+          const html = document.documentElement;
+          const body = document.body;
+          const attr =
+            html.getAttribute("data-bs-theme") ||
+            body.getAttribute("data-bs-theme") ||
+            html.getAttribute("data-theme") ||
+            body.getAttribute("data-theme");
+
+          if (attr) return attr === "dark";
+
+          const classes = html.className + " " + body.className;
+          if (/\b(dark|dark-mode|theme-dark)\b/.test(classes)) return true;
+          if (/\b(light|light-mode|theme-light)\b/.test(classes)) return false;
+
+          return (
+            typeof window.matchMedia === "function" &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches
+          );
+        }
+
+        function chartTheme() {
+          const dark = isDarkMode();
+          return {
+            tick: dark ? "#94a3b8" : "#64748b",
+            grid: dark ? "rgba(148, 163, 184, 0.18)" : "rgba(100, 116, 139, 0.16)",
+            tooltipBg: "rgba(15, 23, 42, 0.94)",
+            tooltipTitle: "#f8fafc",
+            tooltipBody: "#e2e8f0"
+          };
+        }
+
+        function tooltipStyle(theme) {
+          return {
+            backgroundColor: theme.tooltipBg,
+            titleColor: theme.tooltipTitle,
+            bodyColor: theme.tooltipBody,
+            padding: 12,
+            cornerRadius: 10,
+            displayColors: false
+          };
+        }
 
         function makeChart(id, config) {
           const canvas = document.getElementById(id);
           if (!canvas || typeof window.Chart === "undefined") return null;
-          // Avoid double-initialising if another script already claimed the canvas.
           if (typeof Chart.getChart === "function" && Chart.getChart(canvas)) {
-            return null;
+            return null; // already claimed by another script
           }
           return new Chart(canvas, config);
         }
 
-        /* 2a. Runs by format */
-        makeChart("formatChart", {
-          type: "bar",
-          data: {
-            labels: ["Test", "ODI", "T20I", "IPL"],
-            datasets: [
-              {
-                label: "Runs",
-                data: [4301, 11720, 4231, 7289],
-                backgroundColor: [
-                  COLORS.test,
-                  COLORS.odi,
-                  COLORS.t20i,
-                  COLORS.ipl
-                ],
-                borderRadius: 8,
-                borderSkipped: false,
-                maxBarThickness: 68
-              }
-            ]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            animation: { duration: 700 },
-            plugins: {
-              legend: { display: false },
-              tooltip: Object.assign({}, tooltipStyle, {
-                callbacks: {
-                  label: function (ctx) {
-                    return ctx.parsed.y.toLocaleString("en-IN") + " runs";
-                  }
-                }
-              })
-            },
-            scales: {
-              x: {
-                grid: { display: false },
-                ticks: { color: TICK_COLOR, font: FONT }
-              },
-              y: {
-                beginAtZero: true,
-                grid: { color: GRID_COLOR },
-                border: { display: false },
-                ticks: {
-                  color: TICK_COLOR,
-                  font: FONT,
-                  callback: function (value) {
-                    return value >= 1000 ? value / 1000 + "k" : value;
-                  }
-                }
-              }
-            }
-          }
-        });
+        function initCharts() {
+          if (chartsReady || typeof window.Chart === "undefined") return;
 
-        /* 2b. Centuries doughnut */
-        makeChart("centuryChart", {
-          type: "doughnut",
-          data: {
-            labels: ["Test 12", "ODI 33", "T20I 5", "IPL 2"],
-            datasets: [
-              {
-                data: [12, 33, 5, 2],
-                backgroundColor: [
-                  COLORS.test,
-                  COLORS.odi,
-                  COLORS.t20i,
-                  COLORS.ipl
-                ],
-                borderWidth: 0,
-                hoverOffset: 8
-              }
-            ]
-          },
-          options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            cutout: "62%",
-            plugins: {
-              legend: {
-                position: "bottom",
-                labels: {
-                  color: TICK_COLOR,
-                  font: FONT,
-                  boxWidth: 10,
-                  boxHeight: 10,
-                  usePointStyle: true,
-                  pointStyle: "circle",
-                  padding: 14
-                }
-              },
-              tooltip: Object.assign({}, tooltipStyle, {
-                callbacks: {
-                  label: function (ctx) {
-                    return ctx.parsed + " centuries";
-                  }
-                }
-              })
-            }
-          }
-        });
+          const theme = chartTheme();
+          const reduceMotion =
+            typeof window.matchMedia === "function" &&
+            window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-        /* 2c. Fifties horizontal bar */
-        makeChart("fiftyChart", {
-          type: "bar",
-          data: {
-            labels: ["Test", "ODI", "T20I", "IPL"],
-            datasets: [
-              {
-                label: "Fifties",
-                data: [18, 62, 32, 49],
-                backgroundColor: [
-                  COLORS.test,
-                  COLORS.odi,
-                  COLORS.t20i,
-                  COLORS.ipl
-                ],
-                borderRadius: 8,
-                borderSkipped: false,
-                maxBarThickness: 34
-              }
-            ]
-          },
-          options: {
-            indexAxis: "y",
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-              legend: { display: false },
-              tooltip: Object.assign({}, tooltipStyle, {
-                callbacks: {
-                  label: function (ctx) {
-                    return ctx.parsed.x + " fifties";
+          const animation = { duration: reduceMotion ? 0 : 700 };
+          const font = {
+            family:
+              "Inter, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif",
+            size: 12
+          };
+
+          const keys = DATA.meta.formatKeys;
+          const labels = keys.map(function (k) {
+            return DATA.formats[k].short;
+          });
+          const colors = keys.map(function (k) {
+            return DATA.formats[k].color;
+          });
+          const runs = keys.map(function (k) {
+            return DATA.formats[k].runs;
+          });
+          const hundreds = keys.map(function (k) {
+            return DATA.formats[k].hundreds;
+          });
+          const fifties = keys.map(function (k) {
+            return DATA.formats[k].fifties;
+          });
+
+          chartsReady = true;
+
+          /* 4a. Runs by format */
+          charts.formatChart = makeChart("formatChart", {
+            type: "bar",
+            data: {
+              labels: labels,
+              datasets: [
+                {
+                  label: "Runs",
+                  data: runs,
+                  backgroundColor: colors,
+                  borderRadius: 8,
+                  borderSkipped: false,
+                  maxBarThickness: 68
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              animation: animation,
+              plugins: {
+                legend: { display: false },
+                tooltip: Object.assign({}, tooltipStyle(theme), {
+                  callbacks: {
+                    label: function (ctx) {
+                      return NUMBER.format(ctx.parsed.y) + " runs";
+                    }
+                  }
+                })
+              },
+              scales: {
+                x: {
+                  grid: { display: false },
+                  ticks: { color: theme.tick, font: font }
+                },
+                y: {
+                  beginAtZero: true,
+                  grid: { color: theme.grid },
+                  border: { display: false },
+                  ticks: {
+                    color: theme.tick,
+                    font: font,
+                    callback: function (value) {
+                      return value >= 1000 ? value / 1000 + "k" : value;
+                    }
                   }
                 }
-              })
-            },
-            scales: {
-              x: {
-                beginAtZero: true,
-                grid: { color: GRID_COLOR },
-                border: { display: false },
-                ticks: { color: TICK_COLOR, font: FONT, precision: 0 }
-              },
-              y: {
-                grid: { display: false },
-                ticks: { color: TICK_COLOR, font: FONT }
               }
             }
+          });
+
+          /* 4b. Centuries doughnut */
+          charts.centuryChart = makeChart("centuryChart", {
+            type: "doughnut",
+            data: {
+              labels: labels.map(function (label, i) {
+                return label + " " + hundreds[i];
+              }),
+              datasets: [
+                {
+                  data: hundreds,
+                  backgroundColor: colors,
+                  borderWidth: 0,
+                  hoverOffset: 8
+                }
+              ]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              animation: animation,
+              cutout: "62%",
+              plugins: {
+                legend: {
+                  position: "bottom",
+                  labels: {
+                    color: theme.tick,
+                    font: font,
+                    boxWidth: 10,
+                    boxHeight: 10,
+                    usePointStyle: true,
+                    pointStyle: "circle",
+                    padding: 14
+                  }
+                },
+                tooltip: Object.assign({}, tooltipStyle(theme), {
+                  callbacks: {
+                    label: function (ctx) {
+                      return ctx.parsed + " centuries";
+                    }
+                  }
+                })
+              }
+            }
+          });
+
+          /* 4c. Fifties horizontal bar */
+          charts.fiftyChart = makeChart("fiftyChart", {
+            type: "bar",
+            data: {
+              labels: labels,
+              datasets: [
+                {
+                  label: "Fifties",
+                  data: fifties,
+                  backgroundColor: colors,
+                  borderRadius: 8,
+                  borderSkipped: false,
+                  maxBarThickness: 34
+                }
+              ]
+            },
+            options: {
+              indexAxis: "y",
+              responsive: true,
+              maintainAspectRatio: false,
+              animation: animation,
+              plugins: {
+                legend: { display: false },
+                tooltip: Object.assign({}, tooltipStyle(theme), {
+                  callbacks: {
+                    label: function (ctx) {
+                      return ctx.parsed.x + " fifties";
+                    }
+                  }
+                })
+              },
+              scales: {
+                x: {
+                  beginAtZero: true,
+                  grid: { color: theme.grid },
+                  border: { display: false },
+                  ticks: { color: theme.tick, font: font, precision: 0 }
+                },
+                y: {
+                  grid: { display: false },
+                  ticks: { color: theme.tick, font: font }
+                }
+              }
+            }
+          });
+        }
+
+        function refreshChartTheme() {
+          if (!chartsReady) return;
+          const theme = chartTheme();
+
+          Object.keys(charts).forEach(function (key) {
+            const chart = charts[key];
+            if (!chart) return;
+
+            const options = chart.options;
+
+            if (options.scales) {
+              Object.keys(options.scales).forEach(function (scaleKey) {
+                const scale = options.scales[scaleKey];
+                if (scale.grid && scale.grid.color) scale.grid.color = theme.grid;
+                if (scale.ticks) scale.ticks.color = theme.tick;
+              });
+            }
+
+            const plugins = options.plugins || {};
+            if (plugins.legend && plugins.legend.labels) {
+              plugins.legend.labels.color = theme.tick;
+            }
+            if (plugins.tooltip) {
+              plugins.tooltip.backgroundColor = theme.tooltipBg;
+              plugins.tooltip.titleColor = theme.tooltipTitle;
+              plugins.tooltip.bodyColor = theme.tooltipBody;
+            }
+
+            chart.update("none");
+          });
+        }
+
+        function watchCharts() {
+          const anchor = document.getElementById("formatChart");
+          if (!anchor) {
+            initCharts();
+            return;
           }
-        });
+
+          if (!("IntersectionObserver" in window)) {
+            initCharts();
+            return;
+          }
+
+          const observer = new IntersectionObserver(
+            function (entries, obs) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  initCharts();
+                  obs.disconnect();
+                }
+              });
+            },
+            { rootMargin: "200px 0px" }
+          );
+
+          observer.observe(anchor);
+        }
+
+        function watchTheme() {
+          if (typeof MutationObserver === "function") {
+            const observer = new MutationObserver(refreshChartTheme);
+            const config = {
+              attributes: true,
+              attributeFilter: ["class", "data-bs-theme", "data-theme"]
+            };
+            observer.observe(document.documentElement, config);
+            if (document.body) observer.observe(document.body, config);
+          }
+
+          if (typeof window.matchMedia === "function") {
+            const query = window.matchMedia("(prefers-color-scheme: dark)");
+            if (typeof query.addEventListener === "function") {
+              query.addEventListener("change", refreshChartTheme);
+            } else if (typeof query.addListener === "function") {
+              query.addListener(refreshChartTheme);
+            }
+          }
+        }
 
         /* ------------------------------------------------------------------
-         * 3. LAST-UPDATED STAMPS
+         * 5. BOOT
          * ------------------------------------------------------------------ */
-        document.querySelectorAll("[data-last-updated]").forEach(function (el) {
-          el.textContent = DATA.meta.lastUpdated;
-        });
+        renderTable();
+        renderTableLegend();
+        renderKpis();
+        watchCharts();
+        watchTheme();
       })();
-    </script>
-
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
     </script>
   </body>
 </html>

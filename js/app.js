@@ -1,69 +1,514 @@
 const DATA = {};
-const files = ['player','test','odi','t20i','ipl','captaincy','records','worldcup','achievements','timeline','news','gallery'];
-const qs = (s,r=document)=>r.querySelector(s); const qsa=(s,r=document)=>[...r.querySelectorAll(s)];
-const fmt = n => typeof n==='number' ? n.toLocaleString('en-IN') : n;
+const files = [
+  "player",
+  "test",
+  "odi",
+  "t20i",
+  "ipl",
+  "captaincy",
+  "records",
+  "worldcup",
+  "achievements",
+  "timeline",
+  "news",
+  "gallery",
+];
+const qs = (s, r = document) => r.querySelector(s);
+const qsa = (s, r = document) => [...r.querySelectorAll(s)];
+const fmt = (n) => (typeof n === "number" ? n.toLocaleString("en-IN") : n);
 
-async function loadData(){
-  await Promise.all(files.map(async key=>{const r=await fetch(`data/${key}.json`); DATA[key]=await r.json();}));
+async function loadData() {
+  await Promise.all(
+    files.map(async (key) => {
+      const r = await fetch(`data/${key}.json`);
+      DATA[key] = await r.json();
+    }),
+  );
 }
-function navInit(){
-  const path=location.pathname.split('/').pop()||'index.html';
-  qsa('.nav-link').forEach(a=>a.classList.toggle('active',a.getAttribute('href')===path || (path===''&&a.getAttribute('href')==='index.html')));
-  const progress=qs('#progress');
-  addEventListener('scroll',()=>{const h=document.documentElement.scrollHeight-innerHeight; progress&&(progress.style.transform=`scaleX(${h>0?scrollY/h:0})`)},{passive:true});
-  qsa('[data-bs-toggle="tooltip"]').forEach(el=>new bootstrap.Tooltip(el));
+function navInit() {
+  const path = location.pathname.split("/").pop() || "index.html";
+  qsa(".nav-link").forEach((a) =>
+    a.classList.toggle(
+      "active",
+      a.getAttribute("href") === path ||
+        (path === "" && a.getAttribute("href") === "index.html"),
+    ),
+  );
+  const progress = qs("#progress");
+  addEventListener(
+    "scroll",
+    () => {
+      const h = document.documentElement.scrollHeight - innerHeight;
+      progress &&
+        (progress.style.transform = `scaleX(${h > 0 ? scrollY / h : 0})`);
+    },
+    { passive: true },
+  );
+  qsa('[data-bs-toggle="tooltip"]').forEach((el) => new bootstrap.Tooltip(el));
 }
-function renderPlayer(){
-  const p=DATA.player;if(!p)return;
-  qsa('[data-player-name]').forEach(e=>e.textContent=p.name);
-  qsa('[data-full-name]').forEach(e=>e.textContent=p.fullName);
-  qsa('[data-last-updated]').forEach(e=>e.textContent=p.lastUpdated);
-  const map={role:p.role,battingStyle:p.battingStyle,bowlingStyle:p.bowlingStyle,dateOfBirth:p.dateOfBirth,birthplace:p.birthplace,internationalDebut:p.internationalDebut,jerseyNumber:p.jerseyNumber};
-  Object.entries(map).forEach(([k,v])=>qsa(`[data-profile="${k}"]`).forEach(e=>e.textContent=v));
+function renderPlayer() {
+  const p = DATA.player;
+  if (!p) return;
+  qsa("[data-player-name]").forEach((e) => (e.textContent = p.name));
+  qsa("[data-full-name]").forEach((e) => (e.textContent = p.fullName));
+  qsa("[data-last-updated]").forEach((e) => (e.textContent = p.lastUpdated));
+  const map = {
+    role: p.role,
+    battingStyle: p.battingStyle,
+    bowlingStyle: p.bowlingStyle,
+    dateOfBirth: p.dateOfBirth,
+    birthplace: p.birthplace,
+    internationalDebut: p.internationalDebut,
+    jerseyNumber: p.jerseyNumber,
+  };
+  Object.entries(map).forEach(([k, v]) =>
+    qsa(`[data-profile="${k}"]`).forEach((e) => (e.textContent = v)),
+  );
 }
-function renderHero(){
-  const p=DATA.player, t=DATA.test,o=DATA.odi,ti=DATA.t20i;
-  const internationalRuns=t.runs+o.runs+ti.runs, centuries=t.hundreds+o.hundreds+ti.hundreds;
-  const values={runs:internationalRuns,centuries,odidouble:3,matches:t.matches+o.matches+ti.matches};
-  Object.entries(values).forEach(([k,v])=>qsa(`[data-hero="${k}"]`).forEach(e=>e.textContent=fmt(v)));
+function renderHero() {
+  const p = DATA.player,
+    t = DATA.test,
+    o = DATA.odi,
+    ti = DATA.t20i;
+  const internationalRuns = t.runs + o.runs + ti.runs,
+    centuries = t.hundreds + o.hundreds + ti.hundreds;
+  const values = {
+    runs: internationalRuns,
+    centuries,
+    odidouble: 3,
+    matches: t.matches + o.matches + ti.matches,
+  };
+  Object.entries(values).forEach(([k, v]) =>
+    qsa(`[data-hero="${k}"]`).forEach((e) => (e.textContent = fmt(v))),
+  );
 }
-function renderStats(){
-  const target=qs('#statsGrid'), formatButtons=qsa('[data-format]'); if(!target||!DATA.test)return;
-  const data={test:DATA.test,odi:DATA.odi,t20i:DATA.t20i,ipl:DATA.ipl.career,all:{format:'All formats',matches:DATA.test.matches+DATA.odi.matches+DATA.t20i.matches,innings:DATA.test.innings+DATA.odi.innings+DATA.t20i.innings,runs:DATA.test.runs+DATA.odi.runs+DATA.t20i.runs,highestScore:'264',average:null,strikeRate:null,hundreds:DATA.test.hundreds+DATA.odi.hundreds+DATA.t20i.hundreds,fifties:DATA.test.fifties+DATA.odi.fifties+DATA.t20i.fifties,fours:DATA.test.fours+DATA.odi.fours+DATA.t20i.fours,sixes:DATA.test.sixes+DATA.odi.sixes+DATA.t20i.sixes}};
-  const cards=[['matches','Matches'],['innings','Innings'],['runs','Runs'],['highestScore','Highest Score'],['average','Average'],['strikeRate','Strike Rate'],['hundreds','100s'],['fifties','50s'],['fours','4s'],['sixes','6s']];
-  function paint(key){const d=data[key]; target.innerHTML=cards.map(([k,l])=>`<div class="col-6 col-md-4 col-xl-2"><div class="glass stat-card fade-up in"><div class="stat-value" data-count="${typeof d[k]==='number'?d[k]:''}">${d[k]==null?'—':fmt(d[k])}</div><div class="stat-label">${l}</div></div></div>`).join(''); qsa('.stat-value[data-count]').forEach(el=>counter(el)); window.dispatchEvent(new CustomEvent('stats:changed',{detail:{key,d}}));}
-  formatButtons.forEach(b=>b.addEventListener('click',()=>{formatButtons.forEach(x=>x.classList.remove('active'));b.classList.add('active');paint(b.dataset.format)}));
-  paint('all');
+function renderStats() {
+  const target = qs("#statsGrid"),
+    formatButtons = qsa("[data-format]");
+  if (!target || !DATA.test) return;
+  const data = {
+    test: DATA.test,
+    odi: DATA.odi,
+    t20i: DATA.t20i,
+    ipl: DATA.ipl.career,
+    all: {
+      format: "All formats",
+      matches: DATA.test.matches + DATA.odi.matches + DATA.t20i.matches,
+      innings: DATA.test.innings + DATA.odi.innings + DATA.t20i.innings,
+      runs: DATA.test.runs + DATA.odi.runs + DATA.t20i.runs,
+      highestScore: "264",
+      average: null,
+      strikeRate: null,
+      hundreds: DATA.test.hundreds + DATA.odi.hundreds + DATA.t20i.hundreds,
+      fifties: DATA.test.fifties + DATA.odi.fifties + DATA.t20i.fifties,
+      fours: DATA.test.fours + DATA.odi.fours + DATA.t20i.fours,
+      sixes: DATA.test.sixes + DATA.odi.sixes + DATA.t20i.sixes,
+    },
+  };
+  const cards = [
+    ["matches", "Matches"],
+    ["innings", "Innings"],
+    ["runs", "Runs"],
+    ["highestScore", "Highest Score"],
+    ["average", "Average"],
+    ["strikeRate", "Strike Rate"],
+    ["hundreds", "100s"],
+    ["fifties", "50s"],
+    ["fours", "4s"],
+    ["sixes", "6s"],
+  ];
+  function paint(key) {
+    const d = data[key];
+    target.innerHTML = cards
+      .map(
+        ([k, l]) =>
+          `<div class="col-6 col-md-4 col-xl-2"><div class="glass stat-card fade-up in"><div class="stat-value" data-count="${typeof d[k] === "number" ? d[k] : ""}">${d[k] == null ? "—" : fmt(d[k])}</div><div class="stat-label">${l}</div></div></div>`,
+      )
+      .join("");
+    qsa(".stat-value[data-count]").forEach((el) => counter(el));
+    window.dispatchEvent(
+      new CustomEvent("stats:changed", { detail: { key, d } }),
+    );
+  }
+  formatButtons.forEach((b) =>
+    b.addEventListener("click", () => {
+      formatButtons.forEach((x) => x.classList.remove("active"));
+      b.classList.add("active");
+      paint(b.dataset.format);
+    }),
+  );
+  paint("all");
 }
-function counter(el){const end=Number(el.dataset.count);if(!Number.isFinite(end))return;const start=performance.now(),dur=650;const tick=now=>{const p=Math.min(1,(now-start)/dur),v=Math.round((1-Math.pow(1-p,3))*end);el.textContent=fmt(v);if(p<1)requestAnimationFrame(tick)};requestAnimationFrame(tick)}
-function renderRecords(){
-  const grid=qs('#recordsGrid'); if(!grid)return; const filterBtns=qsa('[data-record-filter]');
-  const paint=filter=>{const list=DATA.records.filter(r=>filter==='All'||r.category===filter);grid.innerHTML=list.map(r=>`<div class="col-md-6 col-xl-4"><article class="glass record-card fade-up in"><div class="d-flex justify-content-between align-items-center mb-3"><span class="record-tag">${r.category}</span><span class="mini-note">${r.format}</span></div><div class="record-value">${r.value}</div><h3 class="h5 mt-2">${r.title}</h3><p class="text-muted mb-2">${r.description}</p><div class="source-note">${r.year||'—'} · ${r.opponent||'—'} · ${r.venue||'—'}</div></article></div>`).join('');};
-  filterBtns.forEach(b=>b.addEventListener('click',()=>{filterBtns.forEach(x=>x.classList.remove('active'));b.classList.add('active');paint(b.dataset.recordFilter)})); paint('All');
+function counter(el) {
+  const end = Number(el.dataset.count);
+  if (!Number.isFinite(end)) return;
+  const start = performance.now(),
+    dur = 650;
+  const tick = (now) => {
+    const p = Math.min(1, (now - start) / dur),
+      v = Math.round((1 - Math.pow(1 - p, 3)) * end);
+    el.textContent = fmt(v);
+    if (p < 1) requestAnimationFrame(tick);
+  };
+  requestAnimationFrame(tick);
 }
-function renderTimeline(){const el=qs('#timeline');if(!el)return;el.innerHTML=DATA.timeline.map(x=>`<div class="timeline-item fade-up"><span class="timeline-dot"></span><div class="timeline-year">${x.year}</div><h3 class="h5">${x.title}</h3><p class="text-muted mb-0">${x.description}</p></div>`).join('');observeAnimations();}
-function renderAchievements(){const el=qs('#achievementsGrid');if(!el)return;el.innerHTML=DATA.achievements.map(x=>`<div class="col-md-6 col-xl-4"><article class="glass record-card fade-up in"><div class="d-flex justify-content-between"><span class="display-6">${x.icon==='trophy'?'🏆':x.icon==='award'?'🏅':x.icon==='star'?'⭐':'🛡️'}</span><span class="record-tag">${x.category}</span></div><div class="record-tag mt-4">${x.year}</div><h3 class="h5 mt-2">${x.title}</h3><p class="text-muted mb-0">${x.description}</p></article></div>`).join('');}
-function renderWorldCup(){const el=qs('#worldCupGrid');if(!el)return;el.innerHTML=DATA.worldcup.map(x=>`<div class="col-md-6 col-xl-4"><button class="glass worldcup-card text-start w-100 border-0 text-white" data-bs-toggle="modal" data-bs-target="#wcModal" data-wc='${JSON.stringify(x).replace(/'/g,"&#39;")}'><span class="big-year">${x.year}</span><div class="edition">${x.edition}</div><h3 class="h3 mt-4">${x.role}</h3><div class="row g-2 mt-3"><div class="col-4"><div class="stat-label">Matches</div><strong>${x.matches}</strong></div><div class="col-4"><div class="stat-label">Runs</div><strong>${fmt(x.runs)}</strong></div><div class="col-4"><div class="stat-label">100s</div><strong>${x.centuries}</strong></div></div><p class="text-muted mt-4 mb-0">${x.highlight}</p></button></div>`).join('');qsa('[data-wc]').forEach(b=>b.addEventListener('click',()=>{const x=JSON.parse(b.dataset.wc);qs('#wcModalLabel').textContent=`${x.year} · ${x.edition}`;qs('#wcModalBody').innerHTML=`<p class="lead">${x.highlight}</p><div class="row g-3"><div class="col-4"><div class="glass p-3"><small class="text-muted">Matches</small><div class="h3 mb-0">${x.matches}</div></div></div><div class="col-4"><div class="glass p-3"><small class="text-muted">Runs</small><div class="h3 mb-0">${fmt(x.runs)}</div></div></div><div class="col-4"><div class="glass p-3"><small class="text-muted">100s</small><div class="h3 mb-0">${x.centuries}</div></div></div></div>`;}));}
-function renderIPL(){const grid=qs('#iplSeasonRows');if(!grid)return;grid.innerHTML=DATA.ipl.seasons.map(x=>`<tr><td>${x.season}</td><td>${x.team}</td><td>${x.matches}</td><td>${fmt(x.runs)}</td><td>${x.highest}</td><td>${x.average}</td><td>${x.strikeRate}</td><td>${x.hundreds}</td><td>${x.fifties}</td><td>${x.sixes}</td></tr>`).join('');const c=qs('#iplChart');if(c&&window.Chart){new Chart(c,{type:'line',data:{labels:DATA.ipl.seasons.map(x=>x.season),datasets:[{label:'Runs',data:DATA.ipl.seasons.map(x=>x.runs),tension:.35,borderWidth:3,pointRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#b9c4d6'}}},scales:{x:{ticks:{color:'#7f8ca3'},grid:{color:'rgba(255,255,255,.05)'}},y:{ticks:{color:'#7f8ca3'},grid:{color:'rgba(255,255,255,.05)'}}}}});}}
+function renderRecords() {
+  const grid = qs("#recordsGrid");
+  if (!grid) return;
+  const filterBtns = qsa("[data-record-filter]");
+  const paint = (filter) => {
+    const list = DATA.records.filter(
+      (r) => filter === "All" || r.category === filter,
+    );
+    grid.innerHTML = list
+      .map(
+        (r) =>
+          `<div class="col-md-6 col-xl-4"><article class="glass record-card fade-up in"><div class="d-flex justify-content-between align-items-center mb-3"><span class="record-tag">${r.category}</span><span class="mini-note">${r.format}</span></div><div class="record-value">${r.value}</div><h3 class="h5 mt-2">${r.title}</h3><p class="text-muted mb-2">${r.description}</p><div class="source-note">${r.year || "—"} · ${r.opponent || "—"} · ${r.venue || "—"}</div></article></div>`,
+      )
+      .join("");
+  };
+  filterBtns.forEach((b) =>
+    b.addEventListener("click", () => {
+      filterBtns.forEach((x) => x.classList.remove("active"));
+      b.classList.add("active");
+      paint(b.dataset.recordFilter);
+    }),
+  );
+  paint("All");
+}
+function renderTimeline() {
+  const el = qs("#timeline");
+  if (!el) return;
+  el.innerHTML = DATA.timeline
+    .map(
+      (x) =>
+        `<div class="timeline-item fade-up"><span class="timeline-dot"></span><div class="timeline-year">${x.year}</div><h3 class="h5">${x.title}</h3><p class="text-muted mb-0">${x.description}</p></div>`,
+    )
+    .join("");
+  observeAnimations();
+}
+function renderAchievements() {
+  const el = qs("#achievementsGrid");
+  if (!el) return;
+  el.innerHTML = DATA.achievements
+    .map(
+      (x) =>
+        `<div class="col-md-6 col-xl-4"><article class="glass record-card fade-up in"><div class="d-flex justify-content-between"><span class="display-6">${x.icon === "trophy" ? "🏆" : x.icon === "award" ? "🏅" : x.icon === "star" ? "⭐" : "🛡️"}</span><span class="record-tag">${x.category}</span></div><div class="record-tag mt-4">${x.year}</div><h3 class="h5 mt-2">${x.title}</h3><p class="text-muted mb-0">${x.description}</p></article></div>`,
+    )
+    .join("");
+}
+function renderWorldCup() {
+  const el = qs("#worldCupGrid");
+  if (!el) return;
+  el.innerHTML = DATA.worldcup
+    .map(
+      (x) =>
+        `<div class="col-md-6 col-xl-4"><button class="glass worldcup-card text-start w-100 border-0 text-white" data-bs-toggle="modal" data-bs-target="#wcModal" data-wc='${JSON.stringify(x).replace(/'/g, "&#39;")}'><span class="big-year">${x.year}</span><div class="edition">${x.edition}</div><h3 class="h3 mt-4">${x.role}</h3><div class="row g-2 mt-3"><div class="col-4"><div class="stat-label">Matches</div><strong>${x.matches}</strong></div><div class="col-4"><div class="stat-label">Runs</div><strong>${fmt(x.runs)}</strong></div><div class="col-4"><div class="stat-label">100s</div><strong>${x.centuries}</strong></div></div><p class="text-muted mt-4 mb-0">${x.highlight}</p></button></div>`,
+    )
+    .join("");
+  qsa("[data-wc]").forEach((b) =>
+    b.addEventListener("click", () => {
+      const x = JSON.parse(b.dataset.wc);
+      qs("#wcModalLabel").textContent = `${x.year} · ${x.edition}`;
+      qs("#wcModalBody").innerHTML =
+        `<p class="lead">${x.highlight}</p><div class="row g-3"><div class="col-4"><div class="glass p-3"><small class="text-muted">Matches</small><div class="h3 mb-0">${x.matches}</div></div></div><div class="col-4"><div class="glass p-3"><small class="text-muted">Runs</small><div class="h3 mb-0">${fmt(x.runs)}</div></div></div><div class="col-4"><div class="glass p-3"><small class="text-muted">100s</small><div class="h3 mb-0">${x.centuries}</div></div></div></div>`;
+    }),
+  );
+}
+function renderIPL() {
+  const grid = qs("#iplSeasonRows");
+  if (!grid) return;
+  grid.innerHTML = DATA.ipl.seasons
+    .map(
+      (x) =>
+        `<tr><td>${x.season}</td><td>${x.team}</td><td>${x.matches}</td><td>${fmt(x.runs)}</td><td>${x.highest}</td><td>${x.average}</td><td>${x.strikeRate}</td><td>${x.hundreds}</td><td>${x.fifties}</td><td>${x.sixes}</td></tr>`,
+    )
+    .join("");
+  const c = qs("#iplChart");
+  if (c && window.Chart) {
+    new Chart(c, {
+      type: "line",
+      data: {
+        labels: DATA.ipl.seasons.map((x) => x.season),
+        datasets: [
+          {
+            label: "Runs",
+            data: DATA.ipl.seasons.map((x) => x.runs),
+            tension: 0.35,
+            borderWidth: 3,
+            pointRadius: 2,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: "#b9c4d6" } } },
+        scales: {
+          x: {
+            ticks: { color: "#7f8ca3" },
+            grid: { color: "rgba(255,255,255,.05)" },
+          },
+          y: {
+            ticks: { color: "#7f8ca3" },
+            grid: { color: "rgba(255,255,255,.05)" },
+          },
+        },
+      },
+    });
+  }
+}
 
-function renderCaptaincy(){const root=qs('#captaincyGrid');if(!root||!DATA.captaincy)return;const rows=[['International',DATA.captaincy.international],['Test',DATA.captaincy.test],['ODI',DATA.captaincy.odi],['T20I',DATA.captaincy.t20i],['IPL',DATA.captaincy.ipl]];root.innerHTML=rows.map(([name,x])=>`<div class="col-6 col-lg"><div class="glass stat-card"><div class="stat-label">${name}</div><div class="stat-value mt-2">${x.wins}/${x.matches}</div><div class="mini-note">Wins / matches · ${x.winRate}% win rate</div><div class="mt-3 small"><span class="text-success">W ${x.wins}</span> · <span class="text-danger">L ${x.losses}</span> · <span class="text-muted">T ${x.ties}</span></div></div></div>`).join('');const c=qs('#captaincyChart');if(c&&window.Chart)new Chart(c,{type:'doughnut',data:{labels:['Wins','Losses','Other'],datasets:[{data:[DATA.captaincy.international.wins,DATA.captaincy.international.losses,DATA.captaincy.international.matches-DATA.captaincy.international.wins-DATA.captaincy.international.losses],borderWidth:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#b9c4d6'}}}}});}
-function renderCharts(){
- const el=qs('#formatChart'); if(!el||!window.Chart)return;
- new Chart(el,{type:'bar',data:{labels:['Test','ODI','T20I','IPL'],datasets:[{label:'Runs',data:[DATA.test.runs,DATA.odi.runs,DATA.t20i.runs,DATA.ipl.career.runs],borderRadius:8},{label:'100s',data:[DATA.test.hundreds,DATA.odi.hundreds,DATA.t20i.hundreds,DATA.ipl.career.hundreds],borderRadius:8}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'#b9c4d6'}}},scales:{x:{ticks:{color:'#7f8ca3'},grid:{display:false}},y:{ticks:{color:'#7f8ca3'},grid:{color:'rgba(255,255,255,.05)'}}}}});
+function renderCaptaincy() {
+  const root = qs("#captaincyGrid");
+  if (!root || !DATA.captaincy) return;
+  const rows = [
+    ["International", DATA.captaincy.international],
+    ["Test", DATA.captaincy.test],
+    ["ODI", DATA.captaincy.odi],
+    ["T20I", DATA.captaincy.t20i],
+    ["IPL", DATA.captaincy.ipl],
+  ];
+  root.innerHTML = rows
+    .map(
+      ([name, x]) =>
+        `<div class="col-6 col-lg"><div class="glass stat-card"><div class="stat-label">${name}</div><div class="stat-value mt-2">${x.wins}/${x.matches}</div><div class="mini-note">Wins / matches · ${x.winRate}% win rate</div><div class="mt-3 small"><span class="text-success">W ${x.wins}</span> · <span class="text-danger">L ${x.losses}</span> · <span class="text-muted">T ${x.ties}</span></div></div></div>`,
+    )
+    .join("");
+  const c = qs("#captaincyChart");
+  if (c && window.Chart)
+    new Chart(c, {
+      type: "doughnut",
+      data: {
+        labels: ["Wins", "Losses", "Other"],
+        datasets: [
+          {
+            data: [
+              DATA.captaincy.international.wins,
+              DATA.captaincy.international.losses,
+              DATA.captaincy.international.matches -
+                DATA.captaincy.international.wins -
+                DATA.captaincy.international.losses,
+            ],
+            borderWidth: 0,
+          },
+        ],
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { labels: { color: "#b9c4d6" } } },
+      },
+    });
 }
-function renderGallery(){const grid=qs('#galleryGrid');if(!grid)return;const filters=qsa('[data-gallery-filter]');const paint=f=>{const list=DATA.gallery.filter(x=>f==='All'||x.category===f);grid.innerHTML=list.map((x,i)=>`<div class="col-6 col-lg-4"><button class="gallery-item border-0 p-0 w-100" data-gallery-index="${i}" aria-label="Open ${x.title}"><img loading="lazy" src="${x.src}" alt="${x.alt}"><span class="gallery-overlay text-start"><small>${x.category}</small><strong class="d-block">${x.title}</strong></span></button></div>`).join('');qsa('[data-gallery-index]').forEach(b=>b.addEventListener('click',()=>{const x=list[Number(b.dataset.galleryIndex)];qs('#lightboxImage').src=x.src;qs('#lightboxImage').alt=x.alt;qs('#lightboxCaption').textContent=`${x.title} · ${x.credit}`;new bootstrap.Modal(document.getElementById('lightbox')).show();}));};filters.forEach(b=>b.addEventListener('click',()=>{filters.forEach(x=>x.classList.remove('active'));b.classList.add('active');paint(b.dataset.galleryFilter)}));paint('All');}
-function renderNews(){const grid=qs('#newsGrid');if(!grid)return;grid.innerHTML=DATA.news.map(x=>`<div class="col-md-6"><article class="glass news-card"><div class="d-flex justify-content-between gap-3"><span class="news-category">${x.category}</span><span class="news-date">${x.date}</span></div><h3 class="h4 mt-3">${x.headline}</h3><p class="text-muted">${x.description}</p><a class="btn btn-outline btn-sm rounded-pill" href="${x.url}" target="_blank" rel="noopener">Read source <i class="bi bi-arrow-up-right"></i></a></article></div>`).join('');}
-function searchInit(){const modal=qs('#searchModal'),input=qs('#globalSearch'),results=qs('#searchResults');if(!input)return;let timer;const corpus=()=>[
- ...DATA.records.map(x=>({type:'Record',title:x.title,body:`${x.value} ${x.year||''} ${x.opponent||''} ${x.description}`})),
- ...DATA.timeline.map(x=>({type:'Timeline',title:x.title,body:`${x.year} ${x.description}`})),
- ...DATA.achievements.map(x=>({type:'Achievement',title:x.title,body:`${x.year} ${x.category} ${x.description}`})),
- ...DATA.worldcup.map(x=>({type:'World Cup',title:`${x.year} ${x.edition}`,body:`${x.runs} runs ${x.centuries} centuries ${x.highlight}`})),
- ...DATA.ipl.seasons.map(x=>({type:'IPL',title:`IPL ${x.season} · ${x.team}`,body:`${x.runs} runs ${x.highest} ${x.average} ${x.strikeRate}`}))
- ];
- function run(){const q=input.value.trim().toLowerCase();if(!q){results.innerHTML='<div class="p-4 text-muted">Search records, years, opponents, formats or IPL seasons.</div>';return;}const out=corpus().filter(x=>(x.title+' '+x.body).toLowerCase().includes(q)).slice(0,12);results.innerHTML=out.length?out.map(x=>`<div class="search-result"><span class="record-tag">${x.type}</span><div class="fw-bold mt-1">${x.title}</div><div class="text-muted small">${x.body}</div></div>`).join(''):'<div class="p-4 text-muted">No matching result found.</div>';}
- input.addEventListener('input',()=>{clearTimeout(timer);timer=setTimeout(run,220)});qs('[data-open-search]')?.addEventListener('click',()=>{new bootstrap.Modal(modal).show();setTimeout(()=>input.focus(),300)});run();}
-function themeInit(){const btn=qs('[data-theme-toggle]');if(!btn)return;const saved=localStorage.getItem('rs-theme');if(saved==='light')document.documentElement.classList.add('mode-light');btn.addEventListener('click',()=>{document.documentElement.classList.toggle('mode-light');localStorage.setItem('rs-theme',document.documentElement.classList.contains('mode-light')?'light':'dark');});}
-function observeAnimations(){const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')}),{threshold:.12});qsa('.fade-up:not(.in)').forEach(x=>io.observe(x));}
-function backTop(){const b=qs('#backTop');if(!b)return;addEventListener('scroll',()=>b.classList.toggle('d-none',scrollY<600),{passive:true});b.addEventListener('click',()=>scrollTo({top:0,behavior:'smooth'}));}
-async function boot(){try{await loadData();renderPlayer();renderHero();renderStats();renderRecords();renderTimeline();renderAchievements();renderWorldCup();renderIPL();renderCaptaincy();renderCharts();renderGallery();renderNews();searchInit();themeInit();navInit();backTop();observeAnimations();}catch(e){console.error(e);document.body.insertAdjacentHTML('afterbegin','<div class="alert alert-danger m-0 rounded-0">Data could not be loaded. Run this site through the included Node server rather than opening HTML directly.</div>')}}
-document.addEventListener('DOMContentLoaded',boot);
+function renderCharts() {
+  const el = qs("#formatChart");
+  if (!el || !window.Chart) return;
+  new Chart(el, {
+    type: "bar",
+    data: {
+      labels: ["Test", "ODI", "T20I", "IPL"],
+      datasets: [
+        {
+          label: "Runs",
+          data: [
+            DATA.test.runs,
+            DATA.odi.runs,
+            DATA.t20i.runs,
+            DATA.ipl.career.runs,
+          ],
+          borderRadius: 8,
+        },
+        {
+          label: "100s",
+          data: [
+            DATA.test.hundreds,
+            DATA.odi.hundreds,
+            DATA.t20i.hundreds,
+            DATA.ipl.career.hundreds,
+          ],
+          borderRadius: 8,
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      plugins: { legend: { labels: { color: "#b9c4d6" } } },
+      scales: {
+        x: { ticks: { color: "#7f8ca3" }, grid: { display: false } },
+        y: {
+          ticks: { color: "#7f8ca3" },
+          grid: { color: "rgba(255,255,255,.05)" },
+        },
+      },
+    },
+  });
+}
+function renderGallery() {
+  const grid = qs("#galleryGrid");
+  if (!grid) return;
+  const filters = qsa("[data-gallery-filter]");
+  const paint = (f) => {
+    const list = DATA.gallery.filter((x) => f === "All" || x.category === f);
+    grid.innerHTML = list
+      .map(
+        (x, i) =>
+          `<div class="col-6 col-lg-4"><button class="gallery-item border-0 p-0 w-100" data-gallery-index="${i}" aria-label="Open ${x.title}"><img loading="lazy" src="${x.src}" alt="${x.alt}"><span class="gallery-overlay text-start"><small>${x.category}</small><strong class="d-block">${x.title}</strong></span></button></div>`,
+      )
+      .join("");
+    qsa("[data-gallery-index]").forEach((b) =>
+      b.addEventListener("click", () => {
+        const x = list[Number(b.dataset.galleryIndex)];
+        qs("#lightboxImage").src = x.src;
+        qs("#lightboxImage").alt = x.alt;
+        qs("#lightboxCaption").textContent = `${x.title} · ${x.credit}`;
+        new bootstrap.Modal(document.getElementById("lightbox")).show();
+      }),
+    );
+  };
+  filters.forEach((b) =>
+    b.addEventListener("click", () => {
+      filters.forEach((x) => x.classList.remove("active"));
+      b.classList.add("active");
+      paint(b.dataset.galleryFilter);
+    }),
+  );
+  paint("All");
+}
+function renderNews() {
+  const grid = qs("#newsGrid");
+  if (!grid) return;
+  grid.innerHTML = DATA.news
+    .map(
+      (x) =>
+        `<div class="col-md-6"><article class="glass news-card"><div class="d-flex justify-content-between gap-3"><span class="news-category">${x.category}</span><span class="news-date">${x.date}</span></div><h3 class="h4 mt-3">${x.headline}</h3><p class="text-muted">${x.description}</p><a class="btn btn-outline btn-sm rounded-pill" href="${x.url}" target="_blank" rel="noopener">Read source <i class="bi bi-arrow-up-right"></i></a></article></div>`,
+    )
+    .join("");
+}
+function searchInit() {
+  const modal = qs("#searchModal"),
+    input = qs("#globalSearch"),
+    results = qs("#searchResults");
+  if (!input) return;
+  let timer;
+  const corpus = () => [
+    ...DATA.records.map((x) => ({
+      type: "Record",
+      title: x.title,
+      body: `${x.value} ${x.year || ""} ${x.opponent || ""} ${x.description}`,
+    })),
+    ...DATA.timeline.map((x) => ({
+      type: "Timeline",
+      title: x.title,
+      body: `${x.year} ${x.description}`,
+    })),
+    ...DATA.achievements.map((x) => ({
+      type: "Achievement",
+      title: x.title,
+      body: `${x.year} ${x.category} ${x.description}`,
+    })),
+    ...DATA.worldcup.map((x) => ({
+      type: "World Cup",
+      title: `${x.year} ${x.edition}`,
+      body: `${x.runs} runs ${x.centuries} centuries ${x.highlight}`,
+    })),
+    ...DATA.ipl.seasons.map((x) => ({
+      type: "IPL",
+      title: `IPL ${x.season} · ${x.team}`,
+      body: `${x.runs} runs ${x.highest} ${x.average} ${x.strikeRate}`,
+    })),
+  ];
+  function run() {
+    const q = input.value.trim().toLowerCase();
+    if (!q) {
+      results.innerHTML =
+        '<div class="p-4 text-muted">Search records, years, opponents, formats or IPL seasons.</div>';
+      return;
+    }
+    const out = corpus()
+      .filter((x) => (x.title + " " + x.body).toLowerCase().includes(q))
+      .slice(0, 12);
+    results.innerHTML = out.length
+      ? out
+          .map(
+            (x) =>
+              `<div class="search-result"><span class="record-tag">${x.type}</span><div class="fw-bold mt-1">${x.title}</div><div class="text-muted small">${x.body}</div></div>`,
+          )
+          .join("")
+      : '<div class="p-4 text-muted">No matching result found.</div>';
+  }
+  input.addEventListener("input", () => {
+    clearTimeout(timer);
+    timer = setTimeout(run, 220);
+  });
+  qs("[data-open-search]")?.addEventListener("click", () => {
+    new bootstrap.Modal(modal).show();
+    setTimeout(() => input.focus(), 300);
+  });
+  run();
+}
+function themeInit() {
+  const btn = qs("[data-theme-toggle]");
+  if (!btn) return;
+  const saved = localStorage.getItem("rs-theme");
+  if (saved === "light") document.documentElement.classList.add("mode-light");
+  btn.addEventListener("click", () => {
+    document.documentElement.classList.toggle("mode-light");
+    localStorage.setItem(
+      "rs-theme",
+      document.documentElement.classList.contains("mode-light")
+        ? "light"
+        : "dark",
+    );
+  });
+}
+function observeAnimations() {
+  const io = new IntersectionObserver(
+    (es) =>
+      es.forEach((e) => {
+        if (e.isIntersecting) e.target.classList.add("in");
+      }),
+    { threshold: 0.12 },
+  );
+  qsa(".fade-up:not(.in)").forEach((x) => io.observe(x));
+}
+function backTop() {
+  const b = qs("#backTop");
+  if (!b) return;
+  addEventListener(
+    "scroll",
+    () => b.classList.toggle("d-none", scrollY < 600),
+    { passive: true },
+  );
+  b.addEventListener("click", () => scrollTo({ top: 0, behavior: "smooth" }));
+}
+async function boot() {
+  try {
+    await loadData();
+    renderPlayer();
+    renderHero();
+    renderStats();
+    renderRecords();
+    renderTimeline();
+    renderAchievements();
+    renderWorldCup();
+    renderIPL();
+    renderCaptaincy();
+    renderCharts();
+    renderGallery();
+    renderNews();
+    searchInit();
+    themeInit();
+    navInit();
+    backTop();
+    observeAnimations();
+  } catch (e) {
+    console.error(e);
+    document.body.insertAdjacentHTML(
+      "afterbegin",
+      '<div class="alert alert-danger m-0 rounded-0">Data could not be loaded. Run this site through the included Node server rather than opening HTML directly.</div>',
+    );
+  }
+}
+document.addEventListener("DOMContentLoaded", boot);
