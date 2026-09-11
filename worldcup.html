@@ -1,17 +1,1202 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Rohit Sharma | Career, Records, Stats & Achievements</title>
-<meta name="description" content="Explore Rohit Sharma's career, cricket statistics, records, achievements, IPL career and World Cup performances.">
-<link rel="canonical" href="https://example.com/rohit-sharma">
-<meta property="og:title" content="Rohit Sharma | Career, Records, Stats & Achievements"><meta property="og:description" content="Explore Rohit Sharma's cricket career, records, statistics and achievements."><meta property="og:type" content="website"><meta property="og:url" content="https://example.com/rohit-sharma"><meta property="og:image" content="https://example.com/images/og/rohit-sharma-og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Rohit Sharma Cricket Profile"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Rohit Sharma | Career, Records & Stats"><meta name="twitter:description" content="Explore Rohit Sharma's cricket records, statistics and career."><meta name="twitter:image" content="https://example.com/images/og/rohit-sharma-og.jpg">
-<link rel="preconnect" href="https://cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/responsive.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Rohit Sharma","jobTitle":"Cricketer","url":"https://example.com/rohit-sharma"}</script>
-</head><body><div id="progress"></div>
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top"><div class="container"><a class="navbar-brand" href="index.html"><span class="brand-mark">RS</span>ROHIT SHARMA</a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="nav"><ul class="navbar-nav ms-auto align-items-lg-center"><li><a class="nav-link" href="index.html">HOME</a></li><li><a class="nav-link" href="profile.html">PROFILE</a></li><li><a class="nav-link" href="career.html">CAREER</a></li><li><a class="nav-link" href="stats.html">STATS</a></li><li><a class="nav-link" href="records.html">RECORDS</a></li><li><a class="nav-link" href="ipl.html">IPL</a></li><li><a class="nav-link" href="worldcup.html">WORLD CUP</a></li><li><a class="nav-link" href="achievements.html">ACHIEVEMENTS</a></li><li><a class="nav-link" href="gallery.html">GALLERY</a></li><li><a class="nav-link" href="news.html">NEWS</a></li></ul><div class="nav-actions ms-lg-2"><button class="icon-btn" data-open-search aria-label="Open search"><i class="bi bi-search"></i></button><button class="icon-btn" data-theme-toggle aria-label="Toggle theme"><i class="bi bi-sun"></i></button></div></div></div></nav>
-<main><section class="section" style="padding-top:150px"><div class="container"><div class="section-label">World Cups</div><h1 class="section-title">The World Cup story.</h1><p class="section-copy">Tap any edition to expand its structured tournament summary.</p><div id="worldCupGrid" class="row g-4 mt-2"></div></div></section></main>
-<footer class="footer"><div class="container"><div class="row g-4"><div class="col-lg-6"><div class="section-label">Rohit Sharma</div><h2 class="h2 mt-2">Cricket Career · Records · Statistics · Achievements</h2><p class="text-muted mb-0">An unofficial fan and statistics website. Not affiliated with Rohit Sharma, BCCI, Mumbai Indians or any governing body unless explicitly stated.</p></div><div class="col-6 col-lg-3"><div class="fw-bold mb-3">Quick Links</div><div class="d-grid gap-2 text-muted"><a href="index.html">Home</a><a href="stats.html">Stats</a><a href="records.html">Records</a><a href="ipl.html">IPL</a><a href="gallery.html">Gallery</a></div></div><div class="col-6 col-lg-3"><div class="fw-bold mb-3">Data note</div><p class="text-muted small">Statistics and historical information should be verified against authoritative cricket records.</p><p class="source-note">Last updated: <span data-last-updated>2 September 2026</span></p></div></div><hr class="border-secondary opacity-25 my-5"><div class="d-flex justify-content-between flex-wrap gap-2 small text-muted"><span>© <span id="year"></span> Rohit Sharma Cricket Profile</span><span>Built with HTML · CSS · JavaScript · Bootstrap · Chart.js</span></div></div></footer>
-<button id="backTop" class="icon-btn position-fixed bottom-0 end-0 m-3 d-none" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
-<div class="modal fade search-modal" id="searchModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content glass border-0"><div class="search-panel"><div class="d-flex align-items-center gap-2"><i class="bi bi-search"></i><input id="globalSearch" class="form-control search-input" placeholder="Search 264, 2019, IPL 2013, Sri Lanka…" aria-label="Search website"></div><div id="searchResults" class="mt-3"></div></div></div></div></div>
-<div class="modal fade" id="lightbox" tabindex="-1"><div class="modal-dialog modal-xl modal-dialog-centered"><div class="modal-content bg-dark border-0"><img id="lightboxImage" class="w-100 rounded" alt=""><div id="lightboxCaption" class="p-3 text-muted"></div></div></div></div>
-<div class="modal fade" id="wcModal" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content glass border-0 text-white"><div class="modal-header border-secondary"><h5 id="wcModalLabel" class="modal-title">World Cup</h5><button class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button></div><div id="wcModalBody" class="modal-body"></div></div></div></div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script><script src="js/app.js"></script><script>document.getElementById('year').textContent=new Date().getFullYear();</script></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Rohit Sharma World Cup Story | 2019 ODI & 2024 T20 Triumph</title>
+    <meta
+      name="description"
+      content="The complete story of Rohit Sharma's World Cup career — his record-breaking 2019 ODI campaign and the 2024 T20 World Cup triumph, with full squad moments, statistics and memories."
+    />
+    <link rel="canonical" href="https://example.com/worldcup" />
+    <meta property="og:title" content="Rohit Sharma World Cup Story | 2019 ODI & 2024 T20" />
+    <meta
+      property="og:description"
+      content="Rohit Sharma's World Cup journey: the 2019 run-scoring masterpiece and the 2024 T20 title win."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://example.com/worldcup" />
+    <meta property="og:image" content="https://example.com/images/og/rohit-sharma-og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Rohit Sharma World Cup Record" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Rohit Sharma World Cup Story | 2019 ODI & 2024 T20" />
+    <meta
+      name="twitter:description"
+      content="The full story of Rohit Sharma's 2019 ODI World Cup and 2024 T20 World Cup triumph."
+    />
+    <meta name="twitter:image" content="https://example.com/images/og/rohit-sharma-og.jpg" />
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+
+    <!-- ===== Page-scoped styles ===== -->
+    <style>
+      :root {
+        --wc-line: rgba(148, 163, 184, 0.22);
+        --wc-muted: #94a3b8;
+        --wc-accent: #f97316;
+        --wc-odi: #2563eb;
+        --wc-t20: #16a34a;
+        --wc-gold: #f59e0b;
+        --wc-red: #dc2626;
+      }
+
+      /* KPI ribbon */
+      .kpi-card {
+        padding: 1.05rem 1.15rem;
+        border-radius: 1rem;
+        height: 100%;
+      }
+      .kpi-value {
+        font-size: 1.55rem;
+        font-weight: 900;
+        line-height: 1.1;
+        letter-spacing: -0.02em;
+      }
+      .kpi-label {
+        font-size: 0.7rem;
+        letter-spacing: 0.13em;
+        text-transform: uppercase;
+        color: var(--wc-muted);
+        font-weight: 700;
+        margin-top: 0.35rem;
+      }
+
+      /* Tournament hero banner */
+      .tournament-hero {
+        position: relative;
+        border-radius: 1.35rem;
+        padding: 2.4rem 2rem;
+        overflow: hidden;
+        border: 1px solid var(--wc-line);
+      }
+      .tournament-hero.odi-hero {
+        background: linear-gradient(
+          135deg,
+          rgba(37, 99, 235, 0.18) 0%,
+          rgba(15, 23, 42, 0.4) 60%
+        );
+      }
+      .tournament-hero.t20-hero {
+        background: linear-gradient(
+          135deg,
+          rgba(22, 163, 74, 0.18) 0%,
+          rgba(15, 23, 42, 0.4) 60%
+        );
+      }
+      .tournament-year {
+        font-size: 3.4rem;
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: -0.04em;
+      }
+      .tournament-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.65rem;
+        font-weight: 800;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        padding: 0.35rem 0.8rem;
+        border-radius: 999px;
+        margin-bottom: 1rem;
+      }
+      .odi-tag {
+        color: #93c5fd;
+        background: rgba(37, 99, 235, 0.2);
+        border: 1px solid rgba(37, 99, 235, 0.45);
+      }
+      .t20-tag {
+        color: #86efac;
+        background: rgba(22, 163, 74, 0.2);
+        border: 1px solid rgba(22, 163, 74, 0.45);
+      }
+
+      /* Stats grid inside hero */
+      .hero-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+        gap: 0.75rem;
+        margin-top: 1.6rem;
+      }
+      .hero-stat {
+        padding: 0.9rem 0.8rem;
+        border-radius: 0.9rem;
+        background: rgba(15, 23, 42, 0.35);
+        border: 1px solid var(--wc-line);
+        text-align: center;
+      }
+      .hero-stat .v {
+        font-size: 1.45rem;
+        font-weight: 900;
+        line-height: 1.1;
+      }
+      .hero-stat .l {
+        font-size: 0.58rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--wc-muted);
+        font-weight: 700;
+        margin-top: 0.3rem;
+      }
+
+      /* Story sections */
+      .story-block {
+        padding: 1.3rem 1.4rem;
+        border-radius: 1rem;
+        border: 1px solid var(--wc-line);
+        background: rgba(148, 163, 184, 0.05);
+        margin-bottom: 1rem;
+      }
+      .story-block:last-child {
+        margin-bottom: 0;
+      }
+      .story-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        font-weight: 800;
+        color: var(--wc-accent);
+        margin-bottom: 0.55rem;
+      }
+      .story-title {
+        font-size: 1.1rem;
+        font-weight: 800;
+        margin-bottom: 0.6rem;
+        line-height: 1.3;
+      }
+      .story-copy {
+        font-size: 0.9rem;
+        color: var(--wc-muted);
+        line-height: 1.65;
+        margin-bottom: 0;
+      }
+      .story-copy strong {
+        color: #e2e8f0;
+      }
+
+      /* Highlight callout */
+      .highlight-callout {
+        border-left: 3px solid var(--wc-accent);
+        padding: 1rem 1.1rem;
+        border-radius: 0 0.8rem 0.8rem 0;
+        background: rgba(249, 115, 22, 0.08);
+        margin: 1rem 0;
+      }
+      .highlight-callout p {
+        margin: 0;
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: #e2e8f0;
+        font-style: italic;
+      }
+
+      /* Century list */
+      .century-list {
+        display: grid;
+        gap: 0.65rem;
+        margin-top: 1rem;
+      }
+      .century-item {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        padding: 0.85rem 1rem;
+        border-radius: 0.85rem;
+        border: 1px solid var(--wc-line);
+        background: rgba(148, 163, 184, 0.05);
+        transition: transform 0.18s ease;
+      }
+      .century-item:hover {
+        transform: translateX(4px);
+      }
+      .century-score {
+        font-size: 1.35rem;
+        font-weight: 900;
+        min-width: 4.2rem;
+        letter-spacing: -0.02em;
+        color: var(--wc-accent);
+      }
+      .century-opp {
+        font-weight: 700;
+        font-size: 0.92rem;
+      }
+      .century-venue {
+        font-size: 0.75rem;
+        color: var(--wc-muted);
+      }
+
+      /* Squad memory cards */
+      .memory-card {
+        padding: 1.2rem 1.25rem;
+        border-radius: 1rem;
+        border: 1px solid var(--wc-line);
+        height: 100%;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .memory-card:hover {
+        transform: translateY(-4px);
+      }
+      .memory-card i {
+        font-size: 1.3rem;
+        color: var(--wc-accent);
+      }
+      .memory-title {
+        font-weight: 800;
+        font-size: 0.98rem;
+        margin-top: 0.6rem;
+        line-height: 1.3;
+      }
+      .memory-copy {
+        font-size: 0.84rem;
+        color: var(--wc-muted);
+        margin: 0.4rem 0 0;
+        line-height: 1.6;
+      }
+
+      /* Tab navigation for the two tournaments */
+      .story-tabs {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.6rem;
+        margin-bottom: 2rem;
+      }
+      .story-tabs button {
+        border: 1px solid var(--wc-line);
+        background: transparent;
+        color: var(--wc-muted);
+        border-radius: 999px;
+        padding: 0.65rem 1.35rem;
+        font-size: 0.75rem;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
+      .story-tabs button:hover {
+        color: #fff;
+        border-color: rgba(249, 115, 22, 0.5);
+      }
+      .story-tabs button.active {
+        background: var(--wc-accent);
+        border-color: var(--wc-accent);
+        color: #0b1220;
+      }
+      .story-panel {
+        display: none;
+      }
+      .story-panel.active {
+        display: block;
+        animation: fadeUp 0.35s ease;
+      }
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .story-panel.active {
+          animation: none;
+        }
+      }
+
+      /* Emotional memory banner */
+      .memory-banner {
+        padding: 1.6rem 1.8rem;
+        border-radius: 1.1rem;
+        border: 1px solid var(--wc-line);
+        background: linear-gradient(
+          135deg,
+          rgba(249, 115, 22, 0.1) 0%,
+          rgba(15, 23, 42, 0.3) 100%
+        );
+      }
+      .memory-banner p {
+        font-size: 1rem;
+        line-height: 1.7;
+        color: #e2e8f0;
+        margin: 0;
+        font-style: italic;
+      }
+      .memory-banner .attribution {
+        font-size: 0.78rem;
+        color: var(--wc-muted);
+        font-style: normal;
+        margin-top: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.06em;
+      }
+
+      .source-note {
+        font-size: 0.75rem;
+        color: var(--wc-muted);
+      }
+    </style>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Rohit Sharma",
+        "jobTitle": "Cricketer",
+        "url": "https://example.com/rohit-sharma",
+        "nationality": "India"
+      }
+    </script>
+  </head>
+  <body>
+    <div id="progress"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="index.html"
+          ><span class="brand-mark">RS</span>ROHIT SHARMA</a
+        ><button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#nav"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="nav">
+          <ul class="navbar-nav ms-auto align-items-lg-center">
+            <li><a class="nav-link" href="index.html">HOME</a></li>
+            <li><a class="nav-link" href="profile.html">PROFILE</a></li>
+            <li><a class="nav-link" href="career.html">CAREER</a></li>
+            <li><a class="nav-link" href="stats.html">STATS</a></li>
+            <li><a class="nav-link" href="records.html">RECORDS</a></li>
+            <li><a class="nav-link" href="ipl.html">IPL</a></li>
+            <li>
+              <a class="nav-link active" aria-current="page" href="worldcup.html"
+                >WORLD CUP</a
+              >
+            </li>
+            <li><a class="nav-link" href="achievements.html">ACHIEVEMENTS</a></li>
+            <li><a class="nav-link" href="gallery.html">GALLERY</a></li>
+            <li><a class="nav-link" href="news.html">NEWS</a></li>
+          </ul>
+          <div class="nav-actions ms-lg-2">
+            <button class="icon-btn" data-open-search aria-label="Open search">
+              <i class="bi bi-search"></i></button
+            ><button class="icon-btn" data-theme-toggle aria-label="Toggle theme">
+              <i class="bi bi-sun"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <!-- ============================= HERO ============================= -->
+      <section class="section" style="padding-top: 150px">
+        <div class="container">
+          <div class="section-label">World Cup Story</div>
+          <h1 class="section-title">Two tournaments. Two defining chapters.</h1>
+          <p class="section-copy mb-4">
+            Rohit Sharma's World Cup career is a story of record-breaking
+            brilliance and long-awaited redemption. Explore the full narrative
+            of his 2019 ODI masterpiece and the 2024 T20 World Cup triumph.
+          </p>
+
+          <div class="row g-3 mb-4">
+            <div class="col-6 col-lg-3">
+              <div class="glass kpi-card">
+                <div class="kpi-value">6</div>
+                <div class="kpi-label">World Cups played</div>
+              </div>
+            </div>
+            <div class="col-6 col-lg-3">
+              <div class="glass kpi-card">
+                <div class="kpi-value">1,920</div>
+                <div class="kpi-label">Total runs</div>
+              </div>
+            </div>
+            <div class="col-6 col-lg-3">
+              <div class="glass kpi-card">
+                <div class="kpi-value">7</div>
+                <div class="kpi-label">Centuries</div>
+              </div>
+            </div>
+            <div class="col-6 col-lg-3">
+              <div class="glass kpi-card">
+                <div class="kpi-value">3</div>
+                <div class="kpi-label">Titles won</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============================= STORY TABS ============================= -->
+      <section class="section pt-0">
+        <div class="container">
+          <div class="story-tabs" role="tablist" aria-label="World Cup stories">
+            <button
+              class="active"
+              role="tab"
+              aria-selected="true"
+              data-story="odi2019"
+            >
+              <i class="bi bi-trophy me-1"></i> 2019 ODI World Cup
+            </button>
+            <button role="tab" aria-selected="false" data-story="t20wc2024">
+              <i class="bi bi-star me-1"></i> 2024 T20 World Cup
+            </button>
+            <button role="tab" aria-selected="false" data-story="allEditions">
+              <i class="bi bi-collection me-1"></i> All Editions
+            </button>
+          </div>
+
+          <!-- ==================== 2019 ODI WORLD CUP ==================== -->
+          <div class="story-panel active" id="panel-odi2019">
+            <div class="tournament-hero odi-hero mb-4">
+              <span class="tournament-tag odi-tag">
+                <i class="bi bi-trophy"></i> ODI World Cup
+              </span>
+              <div class="tournament-year">2019</div>
+              <p class="section-copy mt-3 mb-0" style="max-width: 640px">
+                England &amp; Wales. The tournament where Rohit Sharma produced
+                the greatest individual batting display in World Cup history —
+                five centuries, 648 runs, and a place in the record books that
+                may never be surpassed.
+              </p>
+
+              <div class="hero-stats">
+                <div class="hero-stat">
+                  <div class="v">9</div>
+                  <div class="l">Matches</div>
+                </div>
+                <div class="hero-stat">
+                  <div class="v">648</div>
+                  <div class="l">Runs</div>
+                </div>
+                <div class="hero-stat">
+                  <div class="v">81.00</div>
+                  <div class="l">Average</div>
+                </div>
+                <div class="hero-stat">
+                  <div class="v">5</div>
+                  <div class="l">Centuries</div>
+                </div>
+                <div class="hero-stat">
+                  <div class="v">1</div>
+                  <div class="l">Fifty</div>
+                </div>
+                <div class="hero-stat">
+                  <div class="v">4</div>
+                  <div class="l">MOTM awards</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row g-4">
+              <div class="col-lg-7">
+                <div class="glass p-4">
+                  <div class="section-label">The campaign</div>
+                  <h2 class="h3 mt-2 mb-3">A tournament of absolute mastery</h2>
+
+                  <div class="story-block">
+                    <div class="story-label">Opening statement</div>
+                    <div class="story-title">122* vs South Africa — Southampton</div>
+                    <p class="story-copy">
+                      Rohit began the World Cup with an unbeaten 122 against
+                      South Africa at the Rose Bowl. Leading a tricky chase, he
+                      reached his 23rd ODI century in 128 balls, hitting 10 fours
+                      and two sixes. India won by six wickets with 15 balls to
+                      spare. That day he also crossed 12,000 international runs
+                      and leapfrogged Sourav Ganguly on the all-time ODI
+                      centuries list[reference:0].
+                    </p>
+                  </div>
+
+                  <div class="story-block">
+                    <div class="story-label">The Pakistan masterclass</div>
+                    <div class="story-title">140 vs Pakistan — Old Trafford</div>
+                    <p class="story-copy">
+                      In front of a global audience of nearly a billion viewers,
+                      Rohit produced what many consider his finest ODI innings.
+                      Asked to bat first, he took the attack apart with 14 fours
+                      and three sixes, scoring 140 off just 113 balls. He forged
+                      a 136-run stand with KL Rahul and a 98-run partnership with
+                      Virat Kohli. He brought up his 24th ODI ton off just 85
+                      deliveries. One shot — a six over backward point — drew
+                      immediate comparisons to Sachin Tendulkar's famous six
+                      against Pakistan in the 2003 World Cup[reference:1][reference:2].
+                    </p>
+                    <div class="highlight-callout">
+                      <p>
+                        "Rohit was at his elegant best at Old Trafford as he
+                        brought up his 24th ODI ton off just 85 deliveries before
+                        shifting up a gear."
+                      </p>
+                    </div>
+                  </div>
+
+                  <div class="story-block">
+                    <div class="story-label">The consecutive hundreds</div>
+                    <div class="story-title">102 vs England · 104 vs Bangladesh · 103 vs Sri Lanka</div>
+                    <p class="story-copy">
+                      Rohit became only the second player in World Cup history —
+                      after Kumar Sangakkara in 2015 — to score three
+                      consecutive centuries in the tournament. He scored 102
+                      against England at Edgbaston, 104 against Bangladesh, and
+                      103 against Sri Lanka. Along with KL Rahul, he also
+                      registered the highest-ever opening partnership for India
+                      in a World Cup: 189 against Sri Lanka[reference:3].
+                    </p>
+                  </div>
+
+                  <div class="story-block">
+                    <div class="story-label">The records</div>
+                    <div class="story-title">A campaign that rewrote the record book</div>
+                    <p class="story-copy">
+                      Rohit finished as the tournament's leading run-scorer with
+                      648 runs in nine matches at an average of 81. His five
+                      centuries were the most by any player in a single edition
+                      of the World Cup, surpassing Sangakkara's four in 2015. His
+                      total World Cup centuries tally reached six, a record he
+                      shares with Sachin Tendulkar — though Rohit reached it in
+                      just 14 innings compared to Tendulkar's 44. He also earned
+                      four Man of the Match awards, equalling the record held by
+                      Aravinda de Silva, Lance Klusener and Yuvraj Singh
+                      [reference:4].
+                    </p>
+                  </div>
+
+                  <div class="story-block">
+                    <div class="story-label">The heartbreak</div>
+                    <div class="story-title">Semi-final exit against New Zealand</div>
+                    <p class="story-copy">
+                      Despite topping the group stage, India's campaign ended in
+                      the semi-final against New Zealand. Rohit later reflected
+                      on the campaign with mixed emotions: <strong>"2019 World
+                      Cup was the best cricket I have played, got some runs but
+                      again I have mentioned many times if you don't win the
+                      trophy, these runs don't really matter. I was disappointed
+                      as we have given everything as a team but it wasn't just
+                      for us."</strong>[reference:5]
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-5">
+                <div class="glass p-4 mb-4">
+                  <div class="section-label">The five centuries</div>
+                  <h3 class="h5 mt-2 mb-3">Every hundred of the 2019 campaign</h3>
+                  <div class="century-list">
+                    <div class="century-item">
+                      <div class="century-score">122*</div>
+                      <div>
+                        <div class="century-opp">vs South Africa</div>
+                        <div class="century-venue">Rose Bowl, Southampton</div>
+                      </div>
+                    </div>
+                    <div class="century-item">
+                      <div class="century-score">140</div>
+                      <div>
+                        <div class="century-opp">vs Pakistan</div>
+                        <div class="century-venue">Old Trafford, Manchester</div>
+                      </div>
+                    </div>
+                    <div class="century-item">
+                      <div class="century-score">102</div>
+                      <div>
+                        <div class="century-opp">vs England</div>
+                        <div class="century-venue">Edgbaston, Birmingham</div>
+                      </div>
+                    </div>
+                    <div class="century-item">
+                      <div class="century-score">104</div>
+                      <div>
+                        <div class="century-opp">vs Bangladesh</div>
+                        <div class="century-venue">Edgbaston, Birmingham</div>
+                      </div>
+                    </div>
+                    <div class="century-item">
+                      <div class="century-score">103</div>
+                      <div>
+                        <div class="century-opp">vs Sri Lanka</div>
+                        <div class="century-venue">Headingley, Leeds</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="glass p-4">
+                  <div class="section-label">Rohit on 2019</div>
+                  <div class="memory-banner">
+                    <p>
+                      "2019 World Cup was the best cricket I have played, got
+                      some runs but again I have mentioned many times if you
+                      don't win the trophy, these runs don't really matter."
+                    </p>
+                    <div class="attribution">— Rohit Sharma, 2023</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==================== 2024 T20 WORLD CUP ==================== -->
+          <div class="story-panel" id="panel-t20wc2024">
+            <div class="tournament-hero t20-hero mb-4">
+              <span class="tournament-tag t20-tag">
+                <i class="bi bi-star"></i> T20 World Cup
+              </span>
+              <div class="tournament-year">2024</div>
+              <p class="section-copy mt-3 mb-0" style="max-width: 640px">
+                West Indies &amp; USA. After 13 years of waiting, Rohit Sharma
+                captained India to an ICC title — a triumph built on calm
+                leadership, clutch performances, and one unforgettable night in
+                Barbados.
+              </p>
+
+              <div class="hero-stats">
+                <div class="hero-stat">
+                  <div class="v">8</div>
+                  <div class="l">Matches</div>
+                </div>
+                <div class="hero-stat">
+                  <div class="v">257</div>
+                  <div class="l">Runs</div>
+                </div>
+                <div class="hero-stat">
+                  <div class="v">92</div>
+                  <div class="l">Highest score</div>
+                </div>
+                <div class="hero-stat">
+                  <div class="v">156.7</div>
+                  <div class="l">Strike rate</div>
+                </div>
+                <div class="hero-stat">
+                  <div class="v">1</div>
+                  <div class="l">Title won</div>
+                </div>
+                <div class="hero-stat">
+                  <div class="v">Captain</div>
+                  <div class="l">Role</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row g-4">
+              <div class="col-lg-7">
+                <div class="glass p-4">
+                  <div class="section-label">The campaign</div>
+                  <h2 class="h3 mt-2 mb-3">A captain's redemption</h2>
+
+                  <div class="story-block">
+                    <div class="story-label">The batting masterclass</div>
+                    <div class="story-title">92 vs Australia — Super 8</div>
+                    <p class="story-copy">
+                      Rohit later called this his best-ever T20I innings. Against
+                      a formidable Australian attack, he produced a blistering
+                      knock that set the tone for India's campaign. It was the
+                      kind of fearless, selfless batting that defined his
+                      captaincy throughout the tournament[reference:6].
+                    </p>
+                  </div>
+
+                  <div class="story-block">
+                    <div class="story-label">The final — Barbados</div>
+                    <div class="story-title">29 June 2024 · India vs South Africa</div>
+                    <p class="story-copy">
+                      India posted 176/7, built around <strong>Virat Kohli's 76</strong>
+                      — the highest score by an Indian in a T20 World Cup final —
+                      and a crucial partnership with <strong>Axar Patel</strong>,
+                      who scored 47 off 31 balls. Kohli and Axar's rescue act
+                      steadied the innings after early wickets[reference:7].
+                    </p>
+                    <p class="story-copy mt-3">
+                      Defending 177, India seemed in control until Heinrich
+                      Klaasen launched a counterattack, taking 24 runs off one
+                      Axar over. At that moment, South Africa needed just 30 runs
+                      off 30 balls. Rohit later admitted: <strong>"Yes, I was
+                      completely blank."</strong>[reference:8]
+                    </p>
+                  </div>
+
+                  <div class="story-block">
+                    <div class="story-label">The death overs</div>
+                    <div class="story-title">Five overs that changed everything</div>
+                    <p class="story-copy">
+                      What followed was a masterclass in pressure bowling.
+                      <strong>Jasprit Bumrah</strong> conceded just four runs in
+                      the 16th over. <strong>Hardik Pandya</strong> dismissed
+                      Klaasen in the 17th. <strong>Arshdeep Singh</strong> gave
+                      away only four in the 19th, leaving South Africa needing 16
+                      off the final over. Hardik Pandya then defended it,
+                      including the wicket of David Miller, sealing a seven-run
+                      victory[reference:9].
+                    </p>
+                  </div>
+
+                  <div class="story-block">
+                    <div class="story-label">The moment</div>
+                    <div class="story-title">The collapse, the tears, the trophy</div>
+                    <p class="story-copy">
+                      When the final ball was bowled, Rohit collapsed to the
+                      ground in relief and jubilation — a moment now immortalised
+                      in images and videos. He later shared a sentimental video
+                      montage, including him lifting the trophy with his family
+                      [reference:10]. Reflecting on the victory, he said:
+                      <strong>"It was by far the best moment of my life, of my
+                      cricketing career — to lift that trophy."</strong>
+                      [reference:11]
+                    </p>
+                  </div>
+
+                  <div class="story-block">
+                    <div class="story-label">Retirement</div>
+                    <div class="story-title">The end of a T20I era</div>
+                    <p class="story-copy">
+                      Shortly after the final, Rohit announced his retirement
+                      from T20 internationals, walking away as the format's
+                      leading run-scorer and six-hitter, with a World Cup trophy
+                      in his hands and a legacy secured[reference:12].
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-lg-5">
+                <div class="glass p-4 mb-4">
+                  <div class="section-label">Squad moments</div>
+                  <h3 class="h5 mt-2 mb-3">The performances that built the title</h3>
+
+                  <div class="memory-card mb-3">
+                    <i class="bi bi-person-check"></i>
+                    <div class="memory-title">Virat Kohli's 76 in the final</div>
+                    <p class="memory-copy">
+                      The highest score by an Indian in a T20 World Cup final.
+                      Rohit said Kohli's knock "helped calm nerves in the dressing
+                      room" when India lost three early wickets.
+                    </p>
+                  </div>
+
+                  <div class="memory-card mb-3">
+                    <i class="bi bi-lightning-charge"></i>
+                    <div class="memory-title">Axar Patel's 47 off 31</div>
+                    <p class="memory-copy">
+                      Rohit singled out Axar's innings for special praise: "Not
+                      many people are talking about Axar's knock, but that
+                      innings was a real game-changer."
+                    </p>
+                  </div>
+
+                  <div class="memory-card mb-3">
+                    <i class="bi bi-shield-check"></i>
+                    <div class="memory-title">Bumrah, Hardik & Arshdeep</div>
+                    <p class="memory-copy">
+                      The pace trio combined to concede just 22 runs in the final
+                      five overs, snatching the trophy from South Africa's grasp.
+                    </p>
+                  </div>
+
+                  <div class="memory-card">
+                    <i class="bi bi-emoji-heart-eyes"></i>
+                    <div class="memory-title">Rahul Dravid's final mission</div>
+                    <p class="memory-copy">
+                      Rohit dedicated the win to outgoing head coach Rahul
+                      Dravid, calling it the perfect farewell after years of
+                      service to Indian cricket.
+                    </p>
+                  </div>
+                </div>
+
+                <div class="glass p-4">
+                  <div class="section-label">Rohit on the final</div>
+                  <div class="memory-banner">
+                    <p>
+                      "I didn't sleep the whole night. I was only thinking about
+                      the World Cup. I was nervous. I couldn't feel my legs. Did
+                      I feel nerves? Of course. I just don't show it — but
+                      inside, it was a lot."
+                    </p>
+                    <div class="attribution">— Rohit Sharma, 2025</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ==================== ALL EDITIONS ==================== -->
+          <div class="story-panel" id="panel-allEditions">
+            <div class="section-label">Every World Cup</div>
+            <h2 class="h3 mt-2 mb-4">Rohit Sharma's complete World Cup record</h2>
+
+            <div class="row g-3 mb-4">
+              <div class="col-md-6 col-xl-4">
+                <div class="glass p-4 h-100">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <div class="tournament-year" style="font-size: 2rem">2007</div>
+                      <div class="text-muted small">West Indies</div>
+                    </div>
+                    <span class="badge text-bg-warning">Champions</span>
+                  </div>
+                  <div class="mt-3">
+                    <span class="text-muted small">T20 World Cup · Player</span>
+                  </div>
+                  <div class="hero-stats" style="margin-top: 1rem">
+                    <div class="hero-stat">
+                      <div class="v">3</div>
+                      <div class="l">Matches</div>
+                    </div>
+                    <div class="hero-stat">
+                      <div class="v">88</div>
+                      <div class="l">Runs</div>
+                    </div>
+                  </div>
+                  <p class="story-copy mt-3">
+                    Part of India's inaugural T20 World Cup title-winning squad.
+                  </p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-xl-4">
+                <div class="glass p-4 h-100">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <div class="tournament-year" style="font-size: 2rem">2011</div>
+                      <div class="text-muted small">India, Sri Lanka &amp; Bangladesh</div>
+                    </div>
+                    <span class="badge text-bg-warning">Champions</span>
+                  </div>
+                  <div class="mt-3">
+                    <span class="text-muted small">ODI World Cup · Player</span>
+                  </div>
+                  <div class="hero-stats" style="margin-top: 1rem">
+                    <div class="hero-stat">
+                      <div class="v">0</div>
+                      <div class="l">Matches</div>
+                    </div>
+                    <div class="hero-stat">
+                      <div class="v">—</div>
+                      <div class="l">Runs</div>
+                    </div>
+                  </div>
+                  <p class="story-copy mt-3">
+                    Did not appear in a match during India's home title-winning
+                    campaign.
+                  </p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-xl-4">
+                <div class="glass p-4 h-100">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <div class="tournament-year" style="font-size: 2rem">2015</div>
+                      <div class="text-muted small">Australia &amp; New Zealand</div>
+                    </div>
+                    <span class="badge text-bg-secondary">Semi-finalists</span>
+                  </div>
+                  <div class="mt-3">
+                    <span class="text-muted small">ODI World Cup · Player</span>
+                  </div>
+                  <div class="hero-stats" style="margin-top: 1rem">
+                    <div class="hero-stat">
+                      <div class="v">8</div>
+                      <div class="l">Matches</div>
+                    </div>
+                    <div class="hero-stat">
+                      <div class="v">330</div>
+                      <div class="l">Runs</div>
+                    </div>
+                    <div class="hero-stat">
+                      <div class="v">1</div>
+                      <div class="l">100s</div>
+                    </div>
+                  </div>
+                  <p class="story-copy mt-3">
+                    Scored a century against Bangladesh in the quarter-final.
+                  </p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-xl-4">
+                <div class="glass p-4 h-100">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <div class="tournament-year" style="font-size: 2rem">2019</div>
+                      <div class="text-muted small">England &amp; Wales</div>
+                    </div>
+                    <span class="badge text-bg-secondary">Semi-finalists</span>
+                  </div>
+                  <div class="mt-3">
+                    <span class="text-muted small">ODI World Cup · Player</span>
+                  </div>
+                  <div class="hero-stats" style="margin-top: 1rem">
+                    <div class="hero-stat">
+                      <div class="v">9</div>
+                      <div class="l">Matches</div>
+                    </div>
+                    <div class="hero-stat">
+                      <div class="v">648</div>
+                      <div class="l">Runs</div>
+                    </div>
+                    <div class="hero-stat">
+                      <div class="v">5</div>
+                      <div class="l">100s</div>
+                    </div>
+                  </div>
+                  <p class="story-copy mt-3">
+                    Tournament top run-scorer and record five centuries.
+                  </p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-xl-4">
+                <div class="glass p-4 h-100">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <div class="tournament-year" style="font-size: 2rem">2023</div>
+                      <div class="text-muted small">India</div>
+                    </div>
+                    <span class="badge text-bg-secondary">Runners-up</span>
+                  </div>
+                  <div class="mt-3">
+                    <span class="text-muted small">ODI World Cup · Captain</span>
+                  </div>
+                  <div class="hero-stats" style="margin-top: 1rem">
+                    <div class="hero-stat">
+                      <div class="v">11</div>
+                      <div class="l">Matches</div>
+                    </div>
+                    <div class="hero-stat">
+                      <div class="v">597</div>
+                      <div class="l">Runs</div>
+                    </div>
+                    <div class="hero-stat">
+                      <div class="v">1</div>
+                      <div class="l">100s</div>
+                    </div>
+                  </div>
+                  <p class="story-copy mt-3">
+                    Led India to the final; scored 597 runs with a 131.52 strike
+                    rate.
+                  </p>
+                </div>
+              </div>
+
+              <div class="col-md-6 col-xl-4">
+                <div class="glass p-4 h-100">
+                  <div class="d-flex justify-content-between align-items-start">
+                    <div>
+                      <div class="tournament-year" style="font-size: 2rem">2024</div>
+                      <div class="text-muted small">West Indies &amp; USA</div>
+                    </div>
+                    <span class="badge text-bg-warning">Champions</span>
+                  </div>
+                  <div class="mt-3">
+                    <span class="text-muted small">T20 World Cup · Captain</span>
+                  </div>
+                  <div class="hero-stats" style="margin-top: 1rem">
+                    <div class="hero-stat">
+                      <div class="v">8</div>
+                      <div class="l">Matches</div>
+                    </div>
+                    <div class="hero-stat">
+                      <div class="v">257</div>
+                      <div class="l">Runs</div>
+                    </div>
+                    <div class="hero-stat">
+                      <div class="v">1</div>
+                      <div class="l">Title</div>
+                    </div>
+                  </div>
+                  <p class="story-copy mt-3">
+                    Captained India to the T20 World Cup title and then retired
+                    from T20Is.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="glass p-4">
+              <p class="source-note mb-0">
+                All editions shown above are sourced from Rohit Sharma's
+                official World Cup record. Statistics are up to date as of
+                September 2026.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="row g-4">
+          <div class="col-lg-6">
+            <div class="section-label">Rohit Sharma</div>
+            <h2 class="h2 mt-2">
+              Cricket Career · Records · Statistics · Achievements
+            </h2>
+            <p class="text-muted mb-0">
+              An unofficial fan and statistics website. Not affiliated with
+              Rohit Sharma, BCCI, Mumbai Indians or any governing body unless
+              explicitly stated.
+            </p>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="fw-bold mb-3">Quick Links</div>
+            <div class="d-grid gap-2 text-muted">
+              <a href="index.html">Home</a><a href="stats.html">Stats</a
+              ><a href="records.html">Records</a><a href="ipl.html">IPL</a
+              ><a href="gallery.html">Gallery</a>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="fw-bold mb-3">Data note</div>
+            <p class="text-muted small">
+              Statistics and historical information should be verified against
+              authoritative cricket records.
+            </p>
+            <p class="source-note">
+              Last updated: <span data-last-updated>11 September 2026</span>
+            </p>
+          </div>
+        </div>
+        <hr class="border-secondary opacity-25 my-5" />
+        <div
+          class="d-flex justify-content-between flex-wrap gap-2 small text-muted"
+        >
+          <span>© <span id="year"></span> Rohit Sharma Cricket Profile</span
+          ><span>Built with HTML · CSS · JavaScript · Bootstrap</span>
+        </div>
+      </div>
+    </footer>
+
+    <button
+      id="backTop"
+      class="icon-btn position-fixed bottom-0 end-0 m-3 d-none"
+      aria-label="Back to top"
+    >
+      <i class="bi bi-arrow-up"></i>
+    </button>
+
+    <div
+      class="modal fade search-modal"
+      id="searchModal"
+      tabindex="-1"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content glass border-0">
+          <div class="search-panel">
+            <div class="d-flex align-items-center gap-2">
+              <i class="bi bi-search"></i
+              ><input
+                id="globalSearch"
+                class="form-control search-input"
+                placeholder="Search 264, 2019, IPL 2013, Sri Lanka…"
+                aria-label="Search website"
+              />
+            </div>
+            <div id="searchResults" class="mt-3"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="lightbox" tabindex="-1">
+      <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content bg-dark border-0">
+          <img id="lightboxImage" class="w-100 rounded" alt="" />
+          <div id="lightboxCaption" class="p-3 text-muted"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="wcModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content glass border-0 text-white">
+          <div class="modal-header border-secondary">
+            <h5 id="wcModalLabel" class="modal-title">World Cup</h5>
+            <button
+              class="btn-close btn-close-white"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div id="wcModalBody" class="modal-body"></div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- ===================== STORY TAB CONTROLLER ===================== -->
+    <script>
+      (function () {
+        "use strict";
+
+        const tabs = Array.prototype.slice.call(
+          document.querySelectorAll(".story-tabs button[data-story]")
+        );
+        const panels = {
+          odi2019: document.getElementById("panel-odi2019"),
+          t20wc2024: document.getElementById("panel-t20wc2024"),
+          allEditions: document.getElementById("panel-allEditions")
+        };
+
+        function activate(key) {
+          tabs.forEach(function (btn) {
+            const isActive = btn.dataset.story === key;
+            btn.classList.toggle("active", isActive);
+            btn.setAttribute("aria-selected", String(isActive));
+          });
+          Object.keys(panels).forEach(function (k) {
+            if (panels[k]) {
+              panels[k].classList.toggle("active", k === key);
+            }
+          });
+        }
+
+        tabs.forEach(function (btn) {
+          btn.addEventListener("click", function () {
+            activate(btn.dataset.story);
+          });
+        });
+
+        // Update last-updated stamps
+        document.querySelectorAll("[data-last-updated]").forEach(function (el) {
+          el.textContent = "11 September 2026";
+        });
+      })();
+    </script>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+  </body>
+</html>

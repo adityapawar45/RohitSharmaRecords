@@ -1,8 +1,105 @@
-[
-  {"icon":"trophy","year":2024,"title":"ICC Men's T20 World Cup champion","category":"World Cup","description":"Captained India to the 2024 T20 World Cup title."},
-  {"icon":"trophy","year":2025,"title":"ICC Champions Trophy champion","category":"International","description":"Captained India to the 2025 Champions Trophy title."},
-  {"icon":"award","year":2020,"title":"Major Dhyan Chand Khel Ratna","category":"Individual Awards","description":"India's highest sporting honour, awarded for cricket in 2020."},
-  {"icon":"award","year":2015,"title":"Arjuna Award","category":"Individual Awards","description":"Received the Arjuna Award for outstanding sporting performance."},
-  {"icon":"star","year":2019,"title":"ICC ODI Cricketer of the Year","category":"Individual Awards","description":"Named ICC ODI Cricketer of the Year after a record-setting 2019."},
-  {"icon":"shield","year":2009,"title":"IPL Emerging Player","category":"IPL","description":"Recognised as IPL Emerging Player of the Season."}
-]
+{
+  "major_batting_records": [
+    {
+      "title": "Highest ODI Score",
+      "record": "264 runs",
+      "against": "Sri Lanka",
+      "year": 2014,
+      "description": "Scored 264 runs against Sri Lanka in 2014, the highest individual score in ODI cricket."
+    },
+    {
+      "title": "ODI Double Centuries",
+      "record": 3,
+      "description": "The only player in cricket history to score three ODI double centuries.",
+      "scores": [264, 209, 208]
+    },
+    {
+      "title": "Most World Cup Centuries",
+      "record": 5,
+      "year": 2019,
+      "tournament": "ICC Cricket World Cup",
+      "description": "Scored five centuries in the 2019 ICC Cricket World Cup."
+    },
+    {
+      "title": "Most International Sixes",
+      "record": "Most sixes in international cricket",
+      "description": "Holds the record for hitting the most sixes across international cricket."
+    },
+    {
+      "title": "T20I Centuries",
+      "record": 5,
+      "description": "First male player to score five centuries in Twenty20 Internationals."
+    }
+  ],
+  "captaincy_and_team_success": [
+    {
+      "title": "T20 World Cup 2024",
+      "year": 2024,
+      "team": "India",
+      "result": "Winner",
+      "role": "Captain",
+      "description": "Led India to victory in the ICC T20 World Cup and retired from T20I cricket after the tournament."
+    },
+    {
+      "title": "Champions Trophy 2025",
+      "year": 2025,
+      "team": "India",
+      "result": "Winner",
+      "role": "Captain",
+      "description": "Guided India to victory in the ICC Champions Trophy."
+    },
+    {
+      "title": "IPL Success",
+      "team": "Mumbai Indians",
+      "titles": 5,
+      "description": "Captained Mumbai Indians to five Indian Premier League titles."
+    },
+    {
+      "title": "ICC Trophies",
+      "trophies": [
+        {
+          "year": 2007,
+          "tournament": "ICC T20 World Cup",
+          "team": "India"
+        },
+        {
+          "year": 2013,
+          "tournament": "ICC Champions Trophy",
+          "team": "India"
+        },
+        {
+          "year": 2024,
+          "tournament": "ICC T20 World Cup",
+          "team": "India"
+        },
+        {
+          "year": 2025,
+          "tournament": "ICC Champions Trophy",
+          "team": "India"
+        }
+      ]
+    }
+  ],
+  "awards_and_honors": [
+    {
+      "award": "Padma Shri",
+      "year": 2026,
+      "description": "Awarded India's prestigious civilian honor for his contribution to cricket."
+    },
+    {
+      "award": "Major Dhyan Chand Khel Ratna",
+      "year": 2020,
+      "description": "Received India's highest sporting honor."
+    },
+    {
+      "award": "Arjuna Award",
+      "year": 2015,
+      "description": "Awarded for outstanding achievement in cricket."
+    },
+    {
+      "award": "ICC ODI Cricketer of the Year",
+      "year": 2019,
+      "description": "Named ICC ODI Cricketer of the Year."
+    }
+  ]
+}

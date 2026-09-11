@@ -1,17 +1,630 @@
-<!doctype html><html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+```html
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>Rohit Sharma | Career, Records, Stats & Achievements</title>
+
 <meta name="description" content="Explore Rohit Sharma's career, cricket statistics, records, achievements, IPL career and World Cup performances.">
+
 <link rel="canonical" href="https://example.com/rohit-sharma">
-<meta property="og:title" content="Rohit Sharma | Career, Records, Stats & Achievements"><meta property="og:description" content="Explore Rohit Sharma's cricket career, records, statistics and achievements."><meta property="og:type" content="website"><meta property="og:url" content="https://example.com/rohit-sharma"><meta property="og:image" content="https://example.com/images/og/rohit-sharma-og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="Rohit Sharma Cricket Profile"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Rohit Sharma | Career, Records & Stats"><meta name="twitter:description" content="Explore Rohit Sharma's cricket records, statistics and career."><meta name="twitter:image" content="https://example.com/images/og/rohit-sharma-og.jpg">
-<link rel="preconnect" href="https://cdn.jsdelivr.net"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"><link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/responsive.css">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Rohit Sharma","jobTitle":"Cricketer","url":"https://example.com/rohit-sharma"}</script>
-</head><body><div id="progress"></div>
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top"><div class="container"><a class="navbar-brand" href="index.html"><span class="brand-mark">RS</span>ROHIT SHARMA</a><button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"><span class="navbar-toggler-icon"></span></button><div class="collapse navbar-collapse" id="nav"><ul class="navbar-nav ms-auto align-items-lg-center"><li><a class="nav-link" href="index.html">HOME</a></li><li><a class="nav-link" href="profile.html">PROFILE</a></li><li><a class="nav-link" href="career.html">CAREER</a></li><li><a class="nav-link" href="stats.html">STATS</a></li><li><a class="nav-link" href="records.html">RECORDS</a></li><li><a class="nav-link" href="ipl.html">IPL</a></li><li><a class="nav-link" href="worldcup.html">WORLD CUP</a></li><li><a class="nav-link" href="achievements.html">ACHIEVEMENTS</a></li><li><a class="nav-link" href="gallery.html">GALLERY</a></li><li><a class="nav-link" href="news.html">NEWS</a></li></ul><div class="nav-actions ms-lg-2"><button class="icon-btn" data-open-search aria-label="Open search"><i class="bi bi-search"></i></button><button class="icon-btn" data-theme-toggle aria-label="Toggle theme"><i class="bi bi-sun"></i></button></div></div></div></nav>
-<main><section class="section" style="padding-top:150px"><div class="container"><div class="section-label">Achievements & awards</div><h1 class="section-title">Honours across formats and eras.</h1><p class="section-copy">Award data is sourced from BCCI / Government of India references where available.</p><div id="achievementsGrid" class="row g-4 mt-2"></div></div></section></main>
-<footer class="footer"><div class="container"><div class="row g-4"><div class="col-lg-6"><div class="section-label">Rohit Sharma</div><h2 class="h2 mt-2">Cricket Career · Records · Statistics · Achievements</h2><p class="text-muted mb-0">An unofficial fan and statistics website. Not affiliated with Rohit Sharma, BCCI, Mumbai Indians or any governing body unless explicitly stated.</p></div><div class="col-6 col-lg-3"><div class="fw-bold mb-3">Quick Links</div><div class="d-grid gap-2 text-muted"><a href="index.html">Home</a><a href="stats.html">Stats</a><a href="records.html">Records</a><a href="ipl.html">IPL</a><a href="gallery.html">Gallery</a></div></div><div class="col-6 col-lg-3"><div class="fw-bold mb-3">Data note</div><p class="text-muted small">Statistics and historical information should be verified against authoritative cricket records.</p><p class="source-note">Last updated: <span data-last-updated>2 September 2026</span></p></div></div><hr class="border-secondary opacity-25 my-5"><div class="d-flex justify-content-between flex-wrap gap-2 small text-muted"><span>© <span id="year"></span> Rohit Sharma Cricket Profile</span><span>Built with HTML · CSS · JavaScript · Bootstrap · Chart.js</span></div></div></footer>
-<button id="backTop" class="icon-btn position-fixed bottom-0 end-0 m-3 d-none" aria-label="Back to top"><i class="bi bi-arrow-up"></i></button>
-<div class="modal fade search-modal" id="searchModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg"><div class="modal-content glass border-0"><div class="search-panel"><div class="d-flex align-items-center gap-2"><i class="bi bi-search"></i><input id="globalSearch" class="form-control search-input" placeholder="Search 264, 2019, IPL 2013, Sri Lanka…" aria-label="Search website"></div><div id="searchResults" class="mt-3"></div></div></div></div></div>
-<div class="modal fade" id="lightbox" tabindex="-1"><div class="modal-dialog modal-xl modal-dialog-centered"><div class="modal-content bg-dark border-0"><img id="lightboxImage" class="w-100 rounded" alt=""><div id="lightboxCaption" class="p-3 text-muted"></div></div></div></div>
-<div class="modal fade" id="wcModal" tabindex="-1"><div class="modal-dialog modal-dialog-centered"><div class="modal-content glass border-0 text-white"><div class="modal-header border-secondary"><h5 id="wcModalLabel" class="modal-title">World Cup</h5><button class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button></div><div id="wcModalBody" class="modal-body"></div></div></div></div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script><script src="js/app.js"></script><script>document.getElementById('year').textContent=new Date().getFullYear();</script></body></html>
+
+<meta property="og:title" content="Rohit Sharma | Career, Records, Stats & Achievements">
+<meta property="og:description" content="Explore Rohit Sharma's cricket career, records, statistics and achievements.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://example.com/rohit-sharma">
+<meta property="og:image" content="https://example.com/images/og/rohit-sharma-og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Rohit Sharma Cricket Profile">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rohit Sharma | Career, Records & Stats">
+<meta name="twitter:description" content="Explore Rohit Sharma's cricket records, statistics and career.">
+<meta name="twitter:image" content="https://example.com/images/og/rohit-sharma-og.jpg">
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Rohit Sharma",
+  "jobTitle": "Cricketer",
+  "url": "https://example.com/rohit-sharma"
+}
+</script>
+</head>
+
+<body>
+
+<div id="progress"></div>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+<div class="container">
+
+<a class="navbar-brand" href="index.html">
+<span class="brand-mark">RS</span>ROHIT SHARMA
+</a>
+
+<button class="navbar-toggler"
+type="button"
+data-bs-toggle="collapse"
+data-bs-target="#nav">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="nav">
+
+<ul class="navbar-nav ms-auto align-items-lg-center">
+
+<li><a class="nav-link" href="index.html">HOME</a></li>
+<li><a class="nav-link" href="profile.html">PROFILE</a></li>
+<li><a class="nav-link" href="career.html">CAREER</a></li>
+<li><a class="nav-link" href="stats.html">STATS</a></li>
+<li><a class="nav-link" href="records.html">RECORDS</a></li>
+<li><a class="nav-link" href="ipl.html">IPL</a></li>
+<li><a class="nav-link" href="worldcup.html">WORLD CUP</a></li>
+<li><a class="nav-link active" href="achievements.html">ACHIEVEMENTS</a></li>
+<li><a class="nav-link" href="gallery.html">GALLERY</a></li>
+<li><a class="nav-link" href="news.html">NEWS</a></li>
+
+</ul>
+
+<div class="nav-actions ms-lg-2">
+
+<button class="icon-btn"
+data-open-search
+aria-label="Open search">
+<i class="bi bi-search"></i>
+</button>
+
+<button class="icon-btn"
+data-theme-toggle
+aria-label="Toggle theme">
+<i class="bi bi-sun"></i>
+</button>
+
+</div>
+</div>
+</div>
+</nav>
+
+
+<!-- MAIN -->
+<main>
+
+<section class="section" style="padding-top:150px">
+
+<div class="container">
+
+<div class="section-label">
+Achievements & Awards
+</div>
+
+<h1 class="section-title">
+Honours across formats and eras.
+</h1>
+
+<p class="section-copy">
+A collection of Rohit Sharma's major batting records, captaincy achievements,
+team success and individual honours.
+</p>
+
+
+<!-- SUMMARY -->
+<div class="row g-4 mt-4 mb-5">
+
+<div class="col-md-3">
+<div class="glass p-4 h-100">
+<div class="text-muted small">ODI Highest Score</div>
+<div class="display-5 fw-bold">264</div>
+<div class="text-muted">vs Sri Lanka · 2014</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="glass p-4 h-100">
+<div class="text-muted small">ODI Double Centuries</div>
+<div class="display-5 fw-bold">3</div>
+<div class="text-muted">264 · 209 · 208*</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="glass p-4 h-100">
+<div class="text-muted small">World Cup 2019</div>
+<div class="display-5 fw-bold">5</div>
+<div class="text-muted">Centuries</div>
+</div>
+</div>
+
+<div class="col-md-3">
+<div class="glass p-4 h-100">
+<div class="text-muted small">IPL Titles</div>
+<div class="display-5 fw-bold">5</div>
+<div class="text-muted">Mumbai Indians</div>
+</div>
+</div>
+
+</div>
+
+
+<!-- MAJOR BATTING RECORDS -->
+<div class="section-label mt-5">
+Major Batting Records
+</div>
+
+<h2 class="h2 mb-4">
+Records that define the Hitman era.
+</h2>
+
+<div id="battingRecordsGrid" class="row g-4"></div>
+
+
+<!-- CAPTAINCY -->
+<div class="section-label mt-5 pt-5">
+Captaincy & Team Success
+</div>
+
+<h2 class="h2 mb-4">
+Leadership and major titles.
+</h2>
+
+<div id="captaincyGrid" class="row g-4"></div>
+
+
+<!-- AWARDS -->
+<div class="section-label mt-5 pt-5">
+Awards & Honors
+</div>
+
+<h2 class="h2 mb-4">
+Individual recognition.
+</h2>
+
+<div id="awardsGrid" class="row g-4"></div>
+
+
+<!-- ICC TROPHIES -->
+<div class="section-label mt-5 pt-5">
+ICC Trophy Timeline
+</div>
+
+<h2 class="h2 mb-4">
+Major ICC titles with India.
+</h2>
+
+<div class="table-responsive glass p-3">
+
+<table class="table table-dark table-hover align-middle mb-0">
+
+<thead>
+<tr>
+<th>Year</th>
+<th>Tournament</th>
+<th>Team</th>
+<th>Achievement</th>
+</tr>
+</thead>
+
+<tbody id="trophyTable"></tbody>
+
+</table>
+
+</div>
+
+</div>
+</section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer class="footer">
+
+<div class="container">
+
+<div class="row g-4">
+
+<div class="col-lg-6">
+
+<div class="section-label">
+Rohit Sharma
+</div>
+
+<h2 class="h2 mt-2">
+Cricket Career · Records · Statistics · Achievements
+</h2>
+
+<p class="text-muted mb-0">
+An unofficial fan and statistics website. Not affiliated with Rohit Sharma,
+BCCI, Mumbai Indians or any governing body unless explicitly stated.
+</p>
+
+</div>
+
+
+<div class="col-6 col-lg-3">
+
+<div class="fw-bold mb-3">
+Quick Links
+</div>
+
+<div class="d-grid gap-2 text-muted">
+
+<a href="index.html">Home</a>
+<a href="stats.html">Stats</a>
+<a href="records.html">Records</a>
+<a href="ipl.html">IPL</a>
+<a href="gallery.html">Gallery</a>
+
+</div>
+
+</div>
+
+
+<div class="col-6 col-lg-3">
+
+<div class="fw-bold mb-3">
+Data note
+</div>
+
+<p class="text-muted small">
+Statistics and historical information should be verified against
+authoritative cricket records.
+</p>
+
+<p class="source-note">
+Last updated:
+<span data-last-updated>11 September 2026</span>
+</p>
+
+</div>
+
+</div>
+
+<hr class="border-secondary opacity-25 my-5">
+
+<div class="d-flex justify-content-between flex-wrap gap-2 small text-muted">
+
+<span>
+© <span id="year"></span> Rohit Sharma Cricket Profile
+</span>
+
+<span>
+Built with HTML · CSS · JavaScript · Bootstrap · Chart.js
+</span>
+
+</div>
+
+</div>
+
+</footer>
+
+
+<!-- BACK TO TOP -->
+<button id="backTop"
+class="icon-btn position-fixed bottom-0 end-0 m-3 d-none"
+aria-label="Back to top">
+
+<i class="bi bi-arrow-up"></i>
+
+</button>
+
+
+<!-- SEARCH MODAL -->
+<div class="modal fade search-modal"
+id="searchModal"
+tabindex="-1"
+aria-hidden="true">
+
+<div class="modal-dialog modal-lg">
+
+<div class="modal-content glass border-0">
+
+<div class="search-panel">
+
+<div class="d-flex align-items-center gap-2">
+
+<i class="bi bi-search"></i>
+
+<input
+id="globalSearch"
+class="form-control search-input"
+placeholder="Search 264, 2019, IPL, Sri Lanka…"
+aria-label="Search website">
+
+</div>
+
+<div id="searchResults" class="mt-3"></div>
+
+</div>
+
+</div>
+</div>
+</div>
+
+
+<!-- LIGHTBOX -->
+<div class="modal fade"
+id="lightbox"
+tabindex="-1">
+
+<div class="modal-dialog modal-xl modal-dialog-centered">
+
+<div class="modal-content bg-dark border-0">
+
+<img
+id="lightboxImage"
+class="w-100 rounded"
+alt="">
+
+<div
+id="lightboxCaption"
+class="p-3 text-muted">
+</div>
+
+</div>
+</div>
+</div>
+
+
+<!-- WORLD CUP MODAL -->
+<div class="modal fade"
+id="wcModal"
+tabindex="-1">
+
+<div class="modal-dialog modal-dialog-centered">
+
+<div class="modal-content glass border-0 text-white">
+
+<div class="modal-header border-secondary">
+
+<h5 id="wcModalLabel"
+class="modal-title">
+World Cup
+</h5>
+
+<button
+class="btn-close btn-close-white"
+data-bs-dismiss="modal"
+aria-label="Close">
+</button>
+
+</div>
+
+<div id="wcModalBody"
+class="modal-body">
+</div>
+
+</div>
+</div>
+</div>
+
+
+<!-- BOOTSTRAP -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- CHART JS -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+
+<!-- MAIN APP -->
+<script src="js/app.js"></script>
+
+
+<!-- ACHIEVEMENTS DATA -->
+<script>
+
+const battingRecords = [
+{
+title: "Highest ODI Score",
+value: "264 Runs",
+icon: "bi-trophy",
+description: "Scored 264 runs against Sri Lanka in 2014, the highest individual ODI score."
+},
+{
+title: "ODI Double Centuries",
+value: "3",
+icon: "bi-2-circle",
+description: "Rohit Sharma has scored three ODI double centuries: 264, 209 and 208*."
+},
+{
+title: "World Cup Centuries",
+value: "5",
+icon: "bi-globe2",
+description: "Scored five centuries during the 2019 ICC Cricket World Cup."
+},
+{
+title: "International Sixes",
+value: "Record",
+icon: "bi-stars",
+description: "One of the leading six-hitters in international cricket."
+},
+{
+title: "T20I Centuries",
+value: "5",
+icon: "bi-lightning-charge",
+description: "Became the first male player to score five T20I centuries."
+}
+];
+
+
+const captaincy = [
+{
+title: "T20 World Cup 2024",
+value: "Champions",
+icon: "bi-award",
+description: "Led India to victory in the 2024 ICC Men's T20 World Cup."
+},
+{
+title: "Champions Trophy 2025",
+value: "Champions",
+icon: "bi-trophy",
+description: "Led India to victory in the 2025 ICC Champions Trophy."
+},
+{
+title: "IPL Success",
+value: "5 Titles",
+icon: "bi-shield-check",
+description: "Captained Mumbai Indians to five Indian Premier League titles."
+},
+{
+title: "ICC Trophy Success",
+value: "4 Major Titles",
+icon: "bi-stars",
+description: "Part of India's major ICC trophy-winning campaigns in 2007, 2013, 2024 and 2025."
+}
+];
+
+
+const awards = [
+{
+title: "Padma Shri",
+year: "2026",
+icon: "bi-patch-check",
+description: "Awarded India's prestigious civilian honour for contribution to cricket."
+},
+{
+title: "Major Dhyan Chand Khel Ratna",
+year: "2020",
+icon: "bi-award",
+description: "Received India's highest sporting honour."
+},
+{
+title: "Arjuna Award",
+year: "2015",
+icon: "bi-medal",
+description: "Awarded for outstanding achievement in cricket."
+},
+{
+title: "ICC ODI Cricketer of the Year",
+year: "2019",
+icon: "bi-star",
+description: "Named ICC ODI Cricketer of the Year."
+}
+];
+
+
+const trophies = [
+{
+year: 2007,
+tournament: "ICC T20 World Cup",
+team: "India",
+achievement: "Champion"
+},
+{
+year: 2013,
+tournament: "ICC Champions Trophy",
+team: "India",
+achievement: "Champion"
+},
+{
+year: 2024,
+tournament: "ICC T20 World Cup",
+team: "India",
+achievement: "Champion · Captain"
+},
+{
+year: 2025,
+tournament: "ICC Champions Trophy",
+team: "India",
+achievement: "Champion · Captain"
+}
+];
+
+
+function createCard(item) {
+
+return `
+<div class="col-md-6 col-lg-4">
+
+<div class="glass p-4 h-100 achievement-card">
+
+<div class="d-flex align-items-center justify-content-between mb-4">
+
+<div class="achievement-icon fs-2">
+<i class="bi ${item.icon}"></i>
+</div>
+
+<span class="badge text-bg-dark">
+${item.value || item.year}
+</span>
+
+</div>
+
+<h3 class="h5 fw-bold">
+${item.title}
+</h3>
+
+<p class="text-muted mb-0">
+${item.description}
+</p>
+
+</div>
+
+</div>
+`;
+
+}
+
+
+document.getElementById("battingRecordsGrid").innerHTML =
+battingRecords.map(createCard).join("");
+
+
+document.getElementById("captaincyGrid").innerHTML =
+captaincy.map(createCard).join("");
+
+
+document.getElementById("awardsGrid").innerHTML =
+awards.map(createCard).join("");
+
+
+document.getElementById("trophyTable").innerHTML =
+trophies.map(trophy => `
+
+<tr>
+
+<td class="fw-bold">
+${trophy.year}
+</td>
+
+<td>
+${trophy.tournament}
+</td>
+
+<td>
+${trophy.team}
+</td>
+
+<td>
+<span class="badge text-bg-dark">
+${trophy.achievement}
+</span>
+</td>
+
+</tr>
+
+`).join("");
+
+
+document.getElementById("year").textContent =
+new Date().getFullYear();
+
+</script>
+
+</body>
+</html>
